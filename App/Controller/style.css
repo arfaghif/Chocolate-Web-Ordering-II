@@ -1,0 +1,168 @@
+body {
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    background: #facca4 ;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.topnav {
+    background-color:  #432616;
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.topnav a{
+    color: white;
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px;
+}
+
+.topnav a:hover{
+    background-color: #80471c;   
+}
+
+.topnav a.active{
+    background-color: #4C4646;
+}
+.topnav a.nav-bar-right{
+    color:  #ddd;
+    float: right;
+    padding-right: 20px;
+}
+
+.topnav .search-container {
+    float: right;
+    padding-right: 20px;
+  }
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 300px;
+  }
+  
+  .topnav .search-container button {
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    margin-left: 6px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .topnav .search-container button img{
+      width: 15px;
+  }
+
+
+div.page{
+    margin-top: 50px ;
+    margin-right: 20px;
+    padding: 20px;
+} 
+
+div.gallery {
+    margin: 15px 30px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 220px;
+    background: white;
+    color: black;
+  }
+  
+div.gallery:hover {
+    border: 1px solid #777;
+    background: whitesmoke;
+}
+  
+div.gallery img {
+    display: block;
+    padding: 8px;
+    width: 200px;
+    height: 200px;
+}
+  
+div.list-image {
+    float: left;
+    margin: 15px;
+    border: 1px solid #ccc;
+    width: 100%;
+    background:  #80471c;
+    color: black;
+}
+
+div.list-image img {
+    float: left;
+    margin: 15px 10px;
+
+    width: 200px;
+    height: 200px;
+    color: gray;
+}
+
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+    
+}
+
+div.details{
+    margin: 20px 20px;
+}
+
+
+table{
+    width: 100%;
+    margin: 40px auto;
+    background-color: whitesmoke;
+    border-collapse: collapse;
+
+}
+
+th{
+    background-color: #80471c;
+}
+
+th, td{
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color:white}
+
+
+
+@media screen and (max-width: 800px) {
+    .topnav .search-container {
+      float: none;
+    }
+    .topnav a, .topnav input[type=text], .topnav .search-container button,.topnav a.nav-bar-right {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+    .topnav .search-container button  img{
+        width: 15px;
+
+    }
+    div.page{
+        margin-top: 245px;
+    }
+  }
+
