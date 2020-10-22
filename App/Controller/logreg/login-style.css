@@ -43,7 +43,8 @@ body {
 #main-box{
     text-align: left;
     color:  black;
-    
+    font-size: 18px;
+
     background:  whitesmoke ;
     margin:auto;
     margin-top: 10%;
@@ -53,11 +54,8 @@ body {
     padding-bottom: 50px;
     padding-left: 10%;
     padding-right: 10%;
-
-    font-size: 18px;
-
-
 }
+
 
 .li{
     list-style: none;
@@ -71,7 +69,7 @@ input {
     margin-top: 10px;
     margin-bottom: 10px;
 
-    color:gray;
+
 }
 
 
@@ -98,4 +96,18 @@ input[type=submit]:active {
     background-color: #45a049;
     border: 2px solid  #432616;
     color: white;
+}
+
+.error{
+    font-size: 16px;
+    color: red;
+}
+
+.success{
+    font-size: 16px;
+    color: green;
+}
+
+#message{
+    font-size: 16px;
 }
