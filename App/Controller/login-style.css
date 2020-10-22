@@ -1,0 +1,101 @@
+
+nav {
+    background:  #432616;
+}
+
+body {
+    background: #facca4;
+    text-align: center;
+    
+}
+
+.container{
+    background-color: #432616;
+    margin:auto;
+    margin-top:50px;
+    margin-bottom:50px;
+    width: 50%;
+    padding: 100px;
+    padding-bottom: 100px;
+    padding-top: 10px;
+
+    
+}
+
+
+#title-box{
+    color:  black;
+    
+    background:  whitesmoke ;
+    margin:auto;
+    margin-top: 10%;
+
+    width: 75%;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+#main-box{
+    text-align: left;
+    color:  black;
+    
+    background:  whitesmoke ;
+    margin:auto;
+    margin-top: 10%;
+    width: 75%;
+    
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    font-size: 18px;
+
+
+}
+
+.li{
+    list-style: none;
+    
+}
+
+input {
+    padding: 10px 0px 10px 10px;
+    
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    color:gray;
+}
+
+
+input[type=submit] {
+    /*background-color:#80471c; */
+    background-color: #432616;
+    border: 2px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    border: 2px solid  #432616;
+    color:  #432616;
+    
+}
+
+input[type=submit]:active {
+    background-color: #45a049;
+    border: 2px solid  #432616;
+    color: white;
+}
