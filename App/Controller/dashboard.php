@@ -23,7 +23,7 @@ $database = "choc";
     // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
     // $conn->query($sql);
     $res = $conn->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate");
-    echo $res->num_rows;
+    // echo $res->num_rows;
     // while ($row = $res->fetch_assoc()) {
     //   echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
     // }

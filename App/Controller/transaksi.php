@@ -7,6 +7,32 @@
 </html>
 
 <body>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "choc";
+// try {
+    // asumsi database test udah ada
+    $conn =  new mysqli($servername, $username, $password, $database);
+    
+    // misal database belum ada, jalanin query ini:
+    // $conn = new mysqli($servername, $username, $password);
+    // $isCreated = $conn->query("CREATE DATABASE $database");
+    // echo isCreated ? "db created successfully" : "db not created (already there or error occured)";
+     
+    // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
+    // $conn->query($sql);
+    $res = $conn->query("SELECT  nama, amount, total_price,time,address FROM chocolate, transaksi WHERE chocolate.idchocolate = transaksi.idchocolate AND transaksi.username LIKE 'matsu'");
+    
+    // echo $res->num_rows;
+    // while ($row = $res->fetch_assoc()) {
+    //   echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+    // }
+//   } catch (PDOException $e) {
+//     echo $e->getMessage();
+//   }
+?>
     <div class = "topnav">
         <a href = "#home">Home</a>
         <a class= "active" href="#history">History</a>
@@ -23,6 +49,7 @@
     <div class="page">
         <h2>Transaction History</h2>
         <table>
+
                 <tr>
                     <th>Chocolate Name</th>
                     <th>Amount</th>
@@ -31,16 +58,26 @@
                     <th>TIme</th>
                     <th>Address</th>
                 </tr>
+<?php
+// echo $res->num_rows;
+    while ($row = $res->fetch_assoc()){
+                $datetime = new DateTime($row['time']);
 
-                <tr>
-                    <td>Choco 1</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
+                $date = $datetime->format('d-m-y');
+                $time = $datetime->format('H:i:s');
+                
+               echo 
+               '<tr>
+                    <td>'.$row['nama'].'</td>
+                    <td>'.$row['amount'].'</td>
+                    <td>'.$row['total_price'].'</td>
+                    <td>'.$date.'</td>
+                    <td>'.$time.'</td>
+                    <td>'.$row['address'].'</td>
+                </td>';
+    }
+?>
+<!-- 
                 <tr>
                     <td>Choco 2</td>
                     <td>3</td>
@@ -138,7 +175,7 @@
                     <td>17 - 06 - 2020</td>
                     <td>23.59</td>
                     <td>Jalan tersesat</td>
-                </td>
+                </td> -->
             </table>
         </div>
 </body>
