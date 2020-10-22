@@ -52,7 +52,7 @@ while ($row = $res->fetch_assoc()) {
     echo"<div class='gallery'>
             <a target='_blank' href='phot/".$row['idchocolate'].".jpg'>
               <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
-            </a>
+            
             <div class='desc'>
                 <h3>".$row['nama']."</h3>
                 <p>
@@ -60,6 +60,7 @@ while ($row = $res->fetch_assoc()) {
                     Price : ".$row['price']."
                 </p>
             </div>
+            </a>
         </div>
     ";
 }

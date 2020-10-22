@@ -81,6 +81,11 @@ div.gallery {
     color: black;
   }
   
+  div.gallery a{
+    text-decoration: none;
+    color: black;
+  }
+
 div.gallery:hover {
     border: 1px solid #777;
     background: whitesmoke;
@@ -101,7 +106,14 @@ div.list-image {
     background:  #80471c;
     color: black;
 }
-
+div.list-image a{
+    text-decoration: none;
+    color: black;
+}
+div.list-image:hover {
+    border: 2px solid #777;
+    background: rosybrown;
+}
 div.list-image img {
     float: left;
     margin: 15px 10px;
