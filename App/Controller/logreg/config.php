@@ -5,7 +5,7 @@ define('HOST', 'localhost');
 define('DATABASE', 'choc');
  
 try {
-    $connection = new PDO("mysql:host=".HOST.";dbname=".DATABASE, USER, PASSWORD);
+    $connection = new mysqli(HOST, USER, PASSWORD, DATABASE);
 } catch (PDOException $e) {
     exit("Error: " . $e->getMessage());
 }

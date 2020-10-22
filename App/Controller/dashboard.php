@@ -38,9 +38,9 @@ $database = "choc";
         <a href="logout" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
-            <form action="/action_page.php">
+            <form action="search_result.php" method ="get">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><img src="icon/search.png" alt="submit"></i></button>
+                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
             </form>
         </div>
     </div>
