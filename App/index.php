@@ -27,3 +27,4 @@ default:
 
 
 ?>
+<a class="button" href="controller/dashboard.php">Page 1</a>
