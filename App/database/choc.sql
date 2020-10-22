@@ -28,7 +28,7 @@ CREATE TABLE `chocolate` (
   `amount_sold` int(11) NOT NULL DEFAULT 0,
   `price` int(11) NOT NULL,
   `amount_remaining` int(11) NOT NULL,
-  `decs` varchar(45) NOT NULL,
+  `description` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   PRIMARY KEY (`idchocolate`),
   KEY `username` (`username`),
