@@ -34,7 +34,7 @@ $database = "choc";
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
-        <a href="#history">History</a>
+        <a href="transaksi.php">History</a>
         <a href="logout" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">

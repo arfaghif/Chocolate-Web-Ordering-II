@@ -34,7 +34,7 @@ $database = "choc";
 //   }
 ?>
     <div class = "topnav">
-        <a href = "#home">Home</a>
+        <a href = "dashboard.php">Home</a>
         <a class= "active" href="#history">History</a>
         <a href="logout" class= "nav-bar-right">Logout</a>
         
