@@ -28,7 +28,7 @@
                     <table>
                         <tr>
                             <td><label for="name">Name</label></td>
-                            <td><input type="text" id="name" name="name" pattern="[a-zA-Z]+" placeholder="Type chocolate name here" required></td>
+                            <td><input type="text" id="name" name="name" placeholder="Type chocolate name here" required></td>
                         </tr>
                         
                         <tr>
@@ -51,17 +51,34 @@
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         include('logreg/config.php');
+                        
+                        $name = $_POST['name']; //nama 
+                        $price = $_POST['price']; // price
+                        $desc = $_POST['desc']; //description
+                        $amount = $_POST['amount']; //amount_remaining
+                        $amount_sold = 0;
+
+                        $sql = ("INSERT INTO chocolate(nama,amount_sold,price,amount_remaining,description) VALUES ('$name','$amount_sold','$price','$amount','$desc')");
+                        $connection->query($sql);
+                        
+                        $result = $connection->query("SELECT idchocolate FROM chocolate WHERE idchocolate=(select max(idchocolate) from chocolate)");
+                        
+                        $arr = mysqli_fetch_array($result);
+
                         $target_dir = "phot/";
-                        echo $_POST['name'];
-
                         $target_file = $target_dir . basename($_FILES["img"]["name"]);
-
-                        $number = 1;
+                        
+                        $number =  $arr["idchocolate"];
+                        echo $number;
                         $target_test = $target_dir . $number . ".jpg";
-                        while (file_exists($target_test)) {
+
+                        /*
+                        $target_test = $target_dir . $number . ".jpg";
+                        $target_png = $target_dir . $number . ".png";
+                        while (file_exists($target_test) or ) {
                             $number+=1;
                             $target_test = $target_dir . $number . ".jpg";
-                        }
+                        }*/
                         if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_test)) {
                             echo "The file ". htmlspecialchars( $target_test). " has been uploaded.";
                         } else {

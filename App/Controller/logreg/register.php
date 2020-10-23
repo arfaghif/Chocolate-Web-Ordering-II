@@ -9,21 +9,41 @@
         else {
             document.getElementById("message").innerHTML="Password must match";
             document.getElementById("message").style.color="red";
+            document.getElementById("message").style.border="2px solid red";
+            document.getElementById("username").style.border="4px solid green";
+
+
         }   
     }
     function showUser(str) {
         if (str == "") {
-            document.getElementById("username").innerHTML = "";
+            document.getElementById("message").innerHTML = "";
             return;
         } else {
             var xmlhttp = new XMLHttpRequest();
+
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("username").innerHTML = this.responseText;
+                    //document.getElementById("message1").innerHTML = this.responseText;
+                    
+                    if (this.responseText=="green") {
+                        if (str!="") {
+                            document.getElementById("username").style.border="4px solid green";
+                            document.getElementById("message1").innerHTML = "";
+                        }
+                        else {
+                            document.getElementById("username").style.border="1px solid black";
+                        }
+                    }
+                    else {
+                        document.getElementById("username").style.border="1px solid black";
+                        document.getElementById("message1").innerHTML = this.responseText;   
+                    }
                 }
             };
-            xmlhttp.open("get","register.php?q="+str,true); 
+            xmlhttp.open("GET","userCheck.php?q="+str,true); 
             xmlhttp.send();
+
         }
     }
 </script>
@@ -49,20 +69,10 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
             <div id="main-box">
                 <form method="post" action="" name="register-form">
                     <label for="username">Username</label><br>
-                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" onkeyup="showUser(this.value)" placeholder="Type your username here" required><br><br>
-                    <div id="message">
-                        <?php
-                            include('config.php');
-                            $username = $_GET["q"];
+                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" onkeyup="showUser(this.value)" placeholder="Type your username here" required>
+                    <div id="message1">
 
-                            $result = $connection->query("SELECT * FROM user WHERE username LIKE $username");
-
-                            if ($result->num_rows > 0) {
-                                echo '<p class="error">The username is not unique!</p>';
-                            }
-                                
-                        ?>
-                    </div>
+                    </div><br>
                     <label for="email">Email</label><br>
                     <input type="email" id="email" name="email" placeholder="Type your email here" required><br><br>
                     <label for="psw">Password</label><br>
@@ -95,9 +105,6 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
                                     if ($result->num_rows == 0) {
                                        
                                         $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
-
-
-
                                         $connection->query($sql);
 
                                         $result = $connection->query("SELECT * FROM user WHERE username='$username'");
