@@ -1,3 +1,27 @@
+<script type="text/javascript">
+    function pass_matcher() {
+        pass = document.getElementById("psw").value;
+        cpass = document.getElementById("psw2").value;
+        if (pass==cpass){
+            document.getElementById("message").innerHTML="match!";
+            document.getElementById("message").style.color="green";
+        }
+        else {
+            document.getElementById("message").innerHTML="Password must match";
+            document.getElementById("message").style.color="red";
+        }
+        
+
+    }
+</script>
+/*
+Pengecekan keunikan nilai field dilakukan menggunakan AJAX. Jika unik, border field akan berwarna hijau.
+Jika tidak unik, akan muncul pesan error pada form.
+Validasi lain yang dilakukan pada sisi klien pada halaman ini adalah:
+
+Email memiliki format email standar seperti “example@example.com”.
+Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
+
 <html>
     <head>
         <title>Willy Wangky Login Page</title>
@@ -12,13 +36,59 @@
             <div id="main-box">
                 <form method="post" action="" name="register-form">
                     <label for="username">Username</label><br>
-                    <input type="text" id="username" name="username" placeholder="Type your username here"><br><br>
+                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" placeholder="Type your username here" required><br><br>
                     <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" placeholder="Type your email here"><br><br>
+                    <input type="email" id="email" name="email" placeholder="Type your email here" required><br><br>
                     <label for="psw">Password</label><br>
-                    <input type="password" id="psw" name="psw" placeholder="Type your password here"><br><br>
+                    <input type="password" id="psw" name="psw" placeholder="Type your password here" required><br><br>
                     <label for="psw2">Confirm Password</label><br>
-                    <input type="password"  id="psw2" name="psw2" placeholder="Retype your password here"><br><br><br>
+                    <input type="password"  id="psw2" name="psw2" placeholder="Retype your password here" onkeyup="pass_matcher()" required><br>
+                    <div id="message">
+                        <?php
+                            include('config.php');
+
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            
+                                $username = $_POST['username'];
+                                $email = $_POST['email'];
+                                $password = $_POST['psw'];
+                                $confirm_pass = $_POST['psw2'];
+                                
+                                if ($password!=$confirm_pass) {
+                                    echo '<p class="error">Password did not match!</p>';
+                                }
+                                else {
+                                    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+                                    $result = $connection->query("SELECT * FROM user WHERE (email='$email' or username='$username')");
+
+
+                                    if ($result->num_rows > 0) {
+                                        echo '<p class="error">The username or email address is already registered!</p>';
+                                    }
+                                
+                                    if ($result->num_rows == 0) {
+                                        
+                                        $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
+
+
+
+                                        $connection->query($sql);
+
+                                        $result = $connection->query("SELECT * FROM user WHERE username='$username'");
+
+                                        if ($result->num_rows==1) {
+                                            echo '<p class="success">Your registration was successful!</p>';
+                                        } else {
+                                            echo '<p class="error">Something went wrong!</p>';
+                                        }
+                                    }
+                                }
+
+                                
+                            }
+                                
+                        ?>
+                    </div><br><br><br>
                     <input type="submit" value="Register">
                 </form>
             </div>
@@ -26,44 +96,8 @@
             
         </div>
         
-        
-    </body>
-</html>
 
-<?php
- 
-include('config.php');
-session_start();
- 
-if (isset($_POST['register'])) {
- 
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['psw'];
-    $password_hash = password_hash($password, PASSWORD_BCRYPT);
- 
-    $query = $connection->prepare("SELECT * FROM user WHERE user.email=:email");
-    $query->bindParam("email", $email, PDO::PARAM_STR);
-    $query->execute();
- 
-    if ($query->rowCount() > 0) {
-        echo '<p class="error">The email address is already registered!</p>';
-    }
- 
-    if ($query->rowCount() == 0) {
-        $query = $connection->prepare("INSERT INTO user(username,nama,email,password,type) VALUES (:username,:username,:email,:password_hash,1)");
-        $query->bindParam("username", $username, PDO::PARAM_STR);
-        $query->bindParam("password_hash", $password_hash, PDO::PARAM_STR);
-        $query->bindParam("email", $email, PDO::PARAM_STR);
-        $result = $query->execute();
- 
-        if ($result) {
-            echo '<p class="success">Your registration was successful!</p>';
-        } else {
-            echo '<p class="error">Something went wrong!</p>';
-        }
-    }
-}
- 
-?>
+    </body>
+
+</html>
 
