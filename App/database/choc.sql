@@ -29,10 +29,7 @@ CREATE TABLE `chocolate` (
   `price` int(11) NOT NULL,
   `amount_remaining` int(11) NOT NULL,
   `description` varchar(45) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  PRIMARY KEY (`idchocolate`),
-  KEY `username` (`username`),
-  CONSTRAINT `chocolate_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idchocolate`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,7 +39,7 @@ CREATE TABLE `chocolate` (
 
 LOCK TABLES `chocolate` WRITE;
 /*!40000 ALTER TABLE `chocolate` DISABLE KEYS */;
-INSERT INTO `chocolate` VALUES (1,'Choco 1',5,30000,6,'Sangat enak','arfa17'),(2,'Choco 2',5,30000,6,'Sangat enak','arfa17'),(3,'Choco 3',5,30000,6,'Sangat enak','arfa17'),(4,'Choco 4',5,30000,6,'Sangat enak','arfa17'),(5,'Choco 5',5,30000,6,'Sangat enak','arfa17'),(6,'Choco 6',5,30000,6,'Sangat enak','arfa17'),(7,'Brownies 1',5,30000,6,'Sangat enak','asin'),(8,'Brownies 2',5,30000,6,'Sangat enak','asin'),(9,'Brownies 3',5,30000,6,'Sangat enak','asin'),(10,'Brownies 4',5,30000,6,'Sangat enak','asin'),(11,'Brownies 5',5,30000,6,'Sangat enak','asin'),(12,'Brownies 6',5,30000,6,'Sangat enak','asin');
+INSERT INTO `chocolate` VALUES (1,'Choco 1',5,30000,6,'Sangat enak'),(2,'Choco 2',5,30000,6,'Sangat enak'),(3,'Choco 3',5,30000,6,'Sangat enak'),(4,'Choco 4',5,30000,6,'Sangat enak'),(5,'Choco 5',5,30000,6,'Sangat enak'),(6,'Choco 6',5,30000,6,'Sangat enak'),(7,'Brownies 1',5,30000,6,'Sangat enak'),(8,'Brownies 2',5,30000,6,'Sangat enak'),(9,'Brownies 3',5,30000,6,'Sangat enak'),(10,'Brownies 4',5,30000,6,'Sangat enak'),(11,'Brownies 5',5,30000,6,'Sangat enak'),(12,'Brownies 6',5,30000,6,'Sangat enak');
 /*!40000 ALTER TABLE `chocolate` ENABLE KEYS */;
 UNLOCK TABLES;
 

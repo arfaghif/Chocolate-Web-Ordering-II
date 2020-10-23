@@ -23,7 +23,7 @@ $database = "choc";
      
     // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
     // $conn->query($sql);
-    $res = $conn->query("SELECT  nama, amount, total_price,time,address FROM chocolate, transaksi WHERE chocolate.idchocolate = transaksi.idchocolate AND transaksi.username LIKE 'matsu'");
+    $res = $conn->query("SELECT  nama, amount, total_price,time,address FROM chocolate NATURAL JOIN transaksi WHERE username LIKE 'matsu'");
     
     // echo $res->num_rows;
     // while ($row = $res->fetch_assoc()) {
