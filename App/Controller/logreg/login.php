@@ -1,3 +1,9 @@
+<?php
+$cookie_name = "user";
+    if(isset($_COOKIE[$cookie_name])){
+        header('location: ../dashboard.php');
+    }
+?>
 <html>
     <head>
         <title>Willy Wangky Login Page</title>
@@ -35,8 +41,9 @@
                                     echo '<p class="success">Login was successful!</p>';
                                     $cookie_name = "user";
                                     $cookie_value = $username;
-                                    header('location: ../dashboard.php');
+                                    
                                     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
+                                    header('location: ../dashboard.php');
                                     
                                 }
                                 else {

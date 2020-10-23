@@ -23,7 +23,7 @@ else{
     <div class = "topnav">
         <a href = "dashboard.php">Home</a>
         <a href="transaksi.php">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
             <form action="search_result.php" method ="get">

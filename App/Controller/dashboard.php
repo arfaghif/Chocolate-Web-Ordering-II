@@ -5,17 +5,19 @@
         header('location: Controller/logreg/login.php');
     }else{
         $user = $_COOKIE[$cookie_name];
-        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+        $res = $connection->query("SELECT type FROM user WHERE username='.$user.'");
         if ($res->num_rows>0){
-            setcookie("user", "", time() - 3600);
+            setcookie("user", "", time() - 3600,'/');
+            header('location: logreg/login.php');
+            
         }
         else{
             $type = mysqli_fetch_array($res);
+            $user_type = $type['type'];
         }
-        
-        
     }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,9 +30,18 @@
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
-<?php if $tipe
-        <a href="transaksi.php">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
+<?php
+    if ($user_type == 1){
+        echo 
+    
+        '<a href="transaksi.php">History</a>';
+    }else {
+        echo 
+    
+        '<a href="add_new_choco.php">Add New Chocolate</a>';
+    }
+?>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
             <form action="search_result.php" method ="get">
