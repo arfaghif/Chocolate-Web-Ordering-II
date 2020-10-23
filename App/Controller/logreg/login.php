@@ -24,14 +24,20 @@
                                 $username = $_POST['username'];
                                 $password = $_POST['psw'];
                                 
-                                $pass = $connection->query("SELECT password FROM user WHERE username='$username'");
+                                $res = $connection->query("SELECT password,type FROM user WHERE username='$username'");
 
 
 
-                                $hash = mysqli_fetch_array($pass);
+                                $hash = mysqli_fetch_array($res);
+                            
 
                                 if (password_verify($password,$hash['password'])) {
                                     echo '<p class="success">Login was successful!</p>';
+                                    $cookie_name = "user";
+                                    $cookie_value = $username;
+                                    header('location: ../dashboard.php');
+                                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
+                                    
                                 }
                                 else {
                                     echo '<p class="error">The username or password did not match!</p>';

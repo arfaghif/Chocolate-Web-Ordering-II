@@ -1,5 +1,20 @@
 <?php
     include "logreg/config.php";
+    $cookie_name = "user";
+    if(!isset($_COOKIE[$cookie_name])){
+        header('location: Controller/logreg/login.php');
+    }else{
+        $user = $_COOKIE[$cookie_name];
+        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+        if ($res->num_rows>0){
+            setcookie("user", "", time() - 3600);
+        }
+        else{
+            $type = mysqli_fetch_array($res);
+        }
+        
+        
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,34 +24,11 @@
     </head>
 </html>
 
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "choc";
-// try {
-    // asumsi database test udah ada
-    $conn =  new mysqli($servername, $username, $password, $database);
-    
-    // misal database belum ada, jalanin query ini:
-    // $conn = new mysqli($servername, $username, $password);
-    // $isCreated = $conn->query("CREATE DATABASE $database");
-    // echo isCreated ? "db created successfully" : "db not created (already there or error occured)";
-     
-    // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
-    // $conn->query($sql);
-    $res = $conn->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate");
-    // echo $res->num_rows;
-    // while ($row = $res->fetch_assoc()) {
-    //   echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-    // }
-//   } catch (PDOException $e) {
-//     echo $e->getMessage();
-//   }
-?>
+
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
+<?php if $tipe
         <a href="transaksi.php">History</a>
         <a href="logout" class= "nav-bar-right">Logout</a>
         
@@ -48,7 +40,9 @@ $database = "choc";
         </div>
     </div>
     <div class="page">
-    <h2>Hello Wanky</h2>
+<?php
+    echo "<h2>Hello ".$_COOKIE[$cookie_name]."</h2>";
+?>
     <p style="text-align: right;">View all chocolates</p>
 <?php
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
