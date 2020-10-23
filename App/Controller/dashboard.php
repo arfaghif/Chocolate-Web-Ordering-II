@@ -49,8 +49,8 @@ $database = "choc";
     <p style="text-align: right;">View all chocolates</p>
 <?php
 while ($row = $res->fetch_assoc()) {
-    echo"<div class='gallery'>
-            <a target='_blank' href='phot/".$row['idchocolate'].".jpg'>
+    echo"<div class='gallery' >
+            <a href='detail_choco.php?idchoco=".$row['idchocolate']."'>
               <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
             
             <div class='desc'>
