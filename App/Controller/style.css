@@ -138,6 +138,7 @@ div.details{
 table{
     width: 100%;
     margin: 40px auto;
+    margin-top:10px;
     background-color: whitesmoke;
     border-collapse: collapse;
 
@@ -177,6 +178,8 @@ tr:nth-child(even){
         margin-top: 245px;
     }
   }
+
+
 div.choco-name{
     background:  #80471c; 
     text-align: center;
@@ -328,4 +331,93 @@ div.total-price{
     color: #333;
     border-radius: 2px;
     border: 1px solid #eceff5;
+
+
+.container-addchoco{
+    background:#80471c;
+    color:black;
+    padding:5% ;
+    padding-top: 20px;
+    margin-left:3%;
+    margin-right:3%;
+}
+
+.container-addchoco h2{
+
+    color:whitesmoke;
+
+}
+
+.form-addchoco label {
+    vertical-align:top;
+}
+
+.form-addchoco input[type=text] {
+    padding: 10px 0px 10px 10px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-addchoco input {
+
+    width: 90%;
+
+}
+
+#desc{
+    padding: 10px 0px 100px 10px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-addchoco input[type=number] {
+    padding: 10px 0px 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.column{
+    width: 50%;
+}
+
+td, th {
+    /*border: 1px solid #dddddd;
+    padding: 8px;*/
+    text-align: left;
+    vertical-align:top;
+    padding-top:5px;
+    
+}
+
+
+.form-addchoco input[type=submit] {
+    /*background-color:#80471c; */
+    background-color: #45a049;
+    border: 2px solid  #432616;
+    color: white;
+    
+    padding: 15px 4px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    float: right;
+}
+
+.form-addchoco input[type=submit]:hover {
+    background-color: #432616;
+    border: 2px solid black;
+    color: white;
+    
+}
+
+.form-addchoco input[type=submit]:active {
+    
+    background-color: white;
+    border: 2px solid  #432616;
+    color:  #432616;
 }

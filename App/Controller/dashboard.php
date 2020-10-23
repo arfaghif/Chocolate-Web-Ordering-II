@@ -9,6 +9,31 @@
     </head>
 </html>
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "choc";
+// try {
+    // asumsi database test udah ada
+    $conn =  new mysqli($servername, $username, $password, $database);
+    
+    // misal database belum ada, jalanin query ini:
+    // $conn = new mysqli($servername, $username, $password);
+    // $isCreated = $conn->query("CREATE DATABASE $database");
+    // echo isCreated ? "db created successfully" : "db not created (already there or error occured)";
+     
+    // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
+    // $conn->query($sql);
+    $res = $conn->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate");
+    // echo $res->num_rows;
+    // while ($row = $res->fetch_assoc()) {
+    //   echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+    // }
+//   } catch (PDOException $e) {
+//     echo $e->getMessage();
+//   }
+?>
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>

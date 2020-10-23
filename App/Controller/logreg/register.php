@@ -9,9 +9,22 @@
         else {
             document.getElementById("message").innerHTML="Password must match";
             document.getElementById("message").style.color="red";
+        }   
+    }
+    function showUser(str) {
+        if (str == "") {
+            document.getElementById("username").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("username").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("get","register.php?q="+str,true); 
+            xmlhttp.send();
         }
-        
-
     }
 </script>
 /*
@@ -24,7 +37,7 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
 
 <html>
     <head>
-        <title>Willy Wangky Login Page</title>
+        <title>Willy Wangky Register Page</title>
         <link rel="stylesheet" type="text/css" href="login-style.css">
     </head>
     <body style='text-align:center'>
@@ -36,7 +49,20 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
             <div id="main-box">
                 <form method="post" action="" name="register-form">
                     <label for="username">Username</label><br>
-                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" placeholder="Type your username here" required><br><br>
+                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" onkeyup="showUser(this.value)" placeholder="Type your username here" required><br><br>
+                    <div id="message">
+                        <?php
+                            include('config.php');
+                            $username = $_GET["q"];
+
+                            $result = $connection->query("SELECT * FROM user WHERE username LIKE $username");
+
+                            if ($result->num_rows > 0) {
+                                echo '<p class="error">The username is not unique!</p>';
+                            }
+                                
+                        ?>
+                    </div>
                     <label for="email">Email</label><br>
                     <input type="email" id="email" name="email" placeholder="Type your email here" required><br><br>
                     <label for="psw">Password</label><br>
@@ -67,7 +93,7 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
                                     }
                                 
                                     if ($result->num_rows == 0) {
-                                        
+                                       
                                         $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
 
 
