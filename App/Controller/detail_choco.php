@@ -18,14 +18,14 @@ if (isset($_REQUEST['idchoco'])) {
 
 <body>
     <div class = "topnav" >
-        <a class="active" href = "#home">Home</a>
-        <a href="#history">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
+        <a  href = "dashboard.php">Home</a>
+        <a href="transaksi.php">History</a>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
-            <form action="/action_page.php">
+            <form action="search_result.php" method ="get">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><img src="icon/search.png" alt="submit"></i></button>
+                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
             </form>
         </div>
     </div>

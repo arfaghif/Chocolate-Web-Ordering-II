@@ -14,6 +14,19 @@ if (isset($_REQUEST['idchoco'])) {
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
+<body>
+    <div class = "topnav" >
+        <a  href = "dashboard.php">Home</a>
+        <a href="transaksi.php">History</a>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
+        
+        <div class="search-container">
+            <form action="search_result.php" method ="get">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
+            </form>
+        </div>
+    </div>
 <script>
     let count_amount = 0;
     let tot_harga = 0;
@@ -44,8 +57,8 @@ if (isset($_REQUEST['idchoco'])) {
         }
         data = "amount="+String(count_amount)+"&totharga="
         +String(tot_harga)+"&address="+text;
-        
-        createCookie("data-pembelian", data,"1");
+        enc = window.btoa(data);
+        createCookie('data-pembelian', enc, '1');
     }
     function getCookie(cname) {
         var name = cname + "=";
@@ -85,19 +98,8 @@ if (isset($_REQUEST['idchoco'])) {
 <?php
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
 $row = $res->fetch_assoc();
-echo '<body>
-    <div class = "topnav" >
-        <a class="active" href = "#home">Home</a>
-        <a href="#history">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
-        
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><img src="icon/search.png" alt="submit"></i></button>
-            </form>
-        </div>
-    </div>
+echo $coba;
+echo '
 
     <div class="page">
         <div class = "container-chocodetail">

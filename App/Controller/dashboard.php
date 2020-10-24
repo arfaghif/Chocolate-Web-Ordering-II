@@ -56,16 +56,8 @@
 ?>
     <p style="text-align: right;">View all chocolates</p>
 <?php
-$username = $_COOKIE['user'];
-$user = ($connection->query("SELECT password,type FROM user WHERE username='$username'"))->fetch_assoc();
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
 $row = $res->fetch_assoc();
-$response = "";
-if(intval($user['type']) == 0 ){
-    $response = "add_stock_choco.php?idchoco=". intval($row['idchocolate']);
-}else{
-    $response = "detail_choco.php?idchoco=".intval($row['idchocolate']);
-}
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
 } else{
@@ -73,7 +65,7 @@ if($res->num_rows == 0 ){
     while ($row = $res->fetch_assoc()) {
         echo"
             <div class='gallery' >
-                <a href='".$response."'>
+                <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
                 <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
             
                 <div class='desc'>
