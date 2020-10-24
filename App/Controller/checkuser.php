@@ -6,7 +6,7 @@ include "logreg/config.php";
     if(!isset($_COOKIE[$cookie_name])){
         header('location: Controller/logreg/login.php');
     }else{
-        $user = $_COOKIE[$cookie_name];
+        $user = base64_decode($_COOKIE[$cookie_name]);
         $res = $connection->query("SELECT type FROM user WHERE username='$user'");
         if ($res->num_rows==0){
             setcookie("user", "", time() - 3600,'/');

@@ -35,7 +35,6 @@ echo'
     ';
     $datapembelian = Array();
     $cook = base64_decode($_COOKIE['data-pembelian']);
-    echo $cook;
     parse_str($cook,$datapembelian);
     $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
     $row = $res->fetch_assoc();

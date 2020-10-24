@@ -46,7 +46,7 @@ if (isset($_REQUEST['idchoco'])) {
         document.getElementById("field-amount").innerHTML = count_amount;
     }
     count_price = ()=>{
-        harga = getCookie("harga");
+        harga = window.atob(getCookie("harga"));
         tot_harga = harga*count_amount;
         document.getElementById("field-total-price").innerHTML = tot_harga;
     }

@@ -34,7 +34,7 @@ if (isset($_REQUEST['idchoco'])) {
         if(getCookie("add-amount")){
             eraseCookie("add-amount");
         }
-        createCookie("add-amount",String(count_amount),"1");
+        createCookie("add-amount",window.btoa(String(count_amount)),"1");
     }
     function getCookie(cname) {
         var name = cname + "=";
