@@ -1,3 +1,21 @@
+<?php
+    include "logreg/config.php";
+    $cookie_name = "user";
+    if(!isset($_COOKIE[$cookie_name])){
+        header('location: logreg/login.php');
+    }else{
+        $user = $_COOKIE[$cookie_name];
+        $duser = base64_decode($user);
+        $res = $connection->query("SELECT type FROM user WHERE username='$duser'");
+        $type = mysqli_fetch_array($res);
+        if ($res->num_rows==0 || $type['type']==1){
+            setcookie("user", "", time() - 3600,'/');
+            header('location: logreg/login.php');
+        }
+
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +31,9 @@
         <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
-            <form action="/action_page.php">
+            <form action="search_result.php" method ="get">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><img src="icon/search.png" alt="submit"></i></button>
+                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
             </form>
         </div>
     </div>

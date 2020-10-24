@@ -56,9 +56,6 @@ body {
     padding-right: 10%;
 }
 
-#main-box p{
-    text-align: center;
-}
 
 
 .li{
@@ -108,11 +105,14 @@ input[type=submit]:active {
 .error{
     font-size: 16px;
     color: red;
+
 }
 
 .success{
     font-size: 16px;
     color: green;
+
+
 }
 
 #pass_message{
@@ -130,3 +130,6 @@ input[type=submit]:active {
     text-align: right;
 }
 
+#switch-page{
+    text-align: center;
+}
