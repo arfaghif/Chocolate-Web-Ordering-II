@@ -1,22 +1,23 @@
 <?php
-
-include "logreg/config.php";
-$cookie_name = "user";
-if(!isset($_COOKIE[$cookie_name])){
-    header('location: Controller/logreg/login.php');
-}else{
-    $user = $_COOKIE[$cookie_name];
-    $res = $connection->query("SELECT type FROM user WHERE username='.$user.'");
-    if ($res->num_rows>0){
-        setcookie("user", "", time() - 3600,'/');
+    include "logreg/config.php";
+    $cookie_name = "user";
+    if(!isset($_COOKIE[$cookie_name])){
         header('location: logreg/login.php');
-        
+    }else{
+        $user = $_COOKIE[$cookie_name];
+        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+        if ($res->num_rows==0){
+            setcookie("user", "", time() - 3600,'/');
+            header('location: logreg/login.php');
+        }
+        else{
+            $type = mysqli_fetch_array($res);
+            $user_type = $type['type'];
+            if($user_type!=1){
+                header('location: dashboard.php');
+            }
+        }
     }
-    else{
-        $type = mysqli_fetch_array($res);
-        $user_type = $type['type'];
-    }
-}
 
 $res = $connection->query("SELECT  nama,idchocolate, amount, total_price,time,address FROM chocolate NATURAL JOIN transaksi WHERE username LIKE '".$user."' ORDER BY time DESC");
 ?>
