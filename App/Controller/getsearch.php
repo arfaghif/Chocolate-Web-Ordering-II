@@ -13,7 +13,7 @@ if($res->num_rows == 0 ){
    while ($row = $res->fetch_assoc()){
    echo'
        <div class="list-image">
-           <a  href="detail_choco.php?idchoco='.$row['idchocolate'].'">
+           <a  href="checkuser.php?idchoco='.$row['idchocolate'].'">
            <img src="phot/'.$row["idchocolate"].'.jpg" alt="choco 1">
     
            <div class="details">
