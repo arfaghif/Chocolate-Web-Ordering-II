@@ -39,7 +39,7 @@ if (isset($_REQUEST['idchoco'])) {
             </div>
             <div class = "chocodetail">
                 <div class="list-image" id = "chocodetail">
-                    <img src="phot/2.jpg" alt="choco 1" width="600" height="400">
+                    <img src="phot/'.$idchoco.'.jpg" alt="choco 1" width="600" height="400">
                     <div class="details" id = "details-choco">
                         <h3>'.$row['nama'].'</h3>
                         <p>
@@ -52,7 +52,7 @@ if (isset($_REQUEST['idchoco'])) {
                         </p>
                     </div>
                 </div>
-                <a href = "add_amount_choco.php?idchoco='.$idchoco.'">
+                <a href = "add_amount_choco.php?idchoco='.$idchoco.'" class = "a-btn">
                 <button type = "button" class = "btn-buy">Add</button>
                 </a>
             </div>

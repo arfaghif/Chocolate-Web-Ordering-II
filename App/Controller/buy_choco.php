@@ -154,12 +154,12 @@ echo '
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">
-                        <a href = "detail_choco.php?idchoco='.$idchoco.'">
+                        <a href = "detail_choco.php?idchoco='.$idchoco.'" class = "a-btn">
                             <button type = "button" class = "btn-buy">Cancel</button>
                         </a>
                         </div>
                         <div class = "button-cancle">
-                        <a href = "buy_sucess.php?idchoco='.$idchoco.'">
+                        <a href = "buy_sucess.php?idchoco='.$idchoco.'" class = "a-btn">
                             <button type = "button" class = "btn-buy" onclick = "buy_action()">Buy</button>
                         </a>
                         </div>

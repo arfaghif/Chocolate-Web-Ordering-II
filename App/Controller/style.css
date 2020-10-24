@@ -209,8 +209,13 @@ div#chocodetail{
 button.btn-buy{
     padding: 2%;
     font-size: 100%;
-    margin-left: 80%;
     background: #facca4 ;
+}
+a.a-btn{
+    width: auto;
+    height: auto;
+    font-size: 100%;
+    background: #fac;
 }
 table.coba{
     background: #ccc;

@@ -76,7 +76,7 @@ $row = $res->fetch_assoc();
 echo'
 <body>
     <div class = "topnav" >
-        <a class="active" href = "#home">Home</a>
+        <a  href = "dashboard.php">Home</a>
         <a href="add_new_choco.php">Add New Chocolate</a>
         <a href="logout" class= "nav-bar-right">Logout</a>
         
@@ -96,7 +96,7 @@ echo'
             <div class = "chocodetail">
                 <div class="chocodetail-buy" id = "chocodetail">
                     <div class = "img-detail">
-                        <img src="phot/2.jpg" alt="choco 1" width="100%" height="100%">
+                        <img src="phot/'.$idchoco.'.jpg" alt="choco 1" width="100%" height="100%">
                     </div>
                     <div class="details-buy" id = "details-choco">
                         <h3>'.$row['nama'].'</h3>
@@ -133,13 +133,13 @@ echo'
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">
-                            <a href = "add_succes.php?idchoco='.$idchoco.'">
-                            <button type = "button" class = "btn-buy" onclick = "add_action()">Add</button>
+                            <a href = "add_stock_choco.php?idchoco='.$idchoco.'"  class = "a-btn">
+                            <button type = "button" class = "btn-buy" onclick = "add_action()">Cancel</button>
                             </a>
                         </div>
                         <div class = "button-cancle">
-                            <a href = "add_stock_choco.php?idchoco='.$idchoco.'">
-                            <button type = "button" class = "btn-buy">Cancle</button>
+                            <a href = "add_succes.php?idchoco='.$idchoco.'" class = "a-btn">
+                            <button type = "button" class = "btn-buy" onclick = "add_action()">Add</button>
                             </a>
                         </div>
                     </div>
