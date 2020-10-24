@@ -41,7 +41,7 @@ echo'
     $amount = $datapembelian['amount'];
     $totharga = $datapembelian['totharga'];
     $address = $datapembelian['address'];
-    $user = $_COOKIE['user'];
+    $user = base64_decode($_COOKIE['user']);
     if($row['amount_remaining']>=$amount and $amount != 0){
         $sql = ("INSERT INTO transaksi(username,idchocolate, amount, time,address,total_price) VALUES('$user','$idchoco','$amount',NOW(),'$address','$totharga')");
         $connection->query($sql);
