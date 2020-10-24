@@ -102,7 +102,7 @@ else{
             <span> Page </span>";
         while ($i>0){
             echo"
-            <button type ='button' onclick = 'openPage(\"".$search."\",".$offset.")'>".$page."</button>";
+            <button class='page-number' type ='button' onclick = 'openPage(\"".$search."\",".$offset.")'>".$page."</button>";
             $i = $i -3;
             $page = $page +1;
             $offset = ($page-1)*3;
