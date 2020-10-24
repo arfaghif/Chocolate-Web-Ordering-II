@@ -71,6 +71,27 @@ div.page{
     padding: 20px;
 } 
 
+.dash-table{
+    margin : 0px 30px;
+    width:  100%;
+    background: none;
+
+}
+#greet{
+    font-size:  20pt;
+    font-weight: bold;
+
+}
+
+#view-choco{
+    text-align: right;
+    padding-right:  10%;
+}
+#view-choco button{
+    height:  30px;
+    width: 20%px;
+}
+
 div.gallery {
     margin: 15px 30px;
     border: 1px solid #ccc;
@@ -327,6 +348,7 @@ div.total-price{
     margin-top: 20px;
     font-weight: 500;
     padding-bottom: 10px;
+    
 }
 
 .page-number{
@@ -336,6 +358,7 @@ div.total-price{
     color: #333;
     border-radius: 2px;
     border: 1px solid #eceff5;
+    
 }
 
 .pagination span{
@@ -343,6 +366,7 @@ div.total-price{
     padding: 9px 16px!important;
     margin: 5px;
     color: #333;
+    background-color: #eceff5;
     border-radius: 2px;
     border: 1px solid #eceff5;
 }

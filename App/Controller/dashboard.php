@@ -24,7 +24,7 @@
         <title> Dashboard </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-</html>
+
 
 
 <body>
@@ -53,17 +53,45 @@
     </div>
     <div class="page">
 <?php
-    echo "<h2>Hello ".$user."</h2>";
+    echo'
+    <table class= "dash-table">
+    <tr>
+        <td id = "greet"> Hello, '.$user.'</td>
+        <td id= "view-choco"> <button type ="button" onclick="showObject(\'hidden-object\')">View all chocolate</td>
+    </tr>
+    </table>'
 ?>
-    <p style="text-align: right;">View all chocolates</p>
 <?php
-$res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
+$res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC ");
 
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
 } else{
     // echo '<h2>'.$user_type.'</h2>';
-    while ($row = $res->fetch_assoc()) {
+    $i = 0;
+
+    while ($res->num_rows > 0 && $i <10) {
+        $row = $res->fetch_assoc();
+        echo"
+            <div class='gallery' >
+                <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
+                <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
+            
+                <div class='desc'>
+                    <h3>".$row['nama']."</h3>
+                    <p>
+                        Amount sold : ".$row['amount_sold']."</br>
+                        Price : ".$row['price']."
+                    </p>
+                </div>
+                </a>
+            </div>";
+        $i +=1;
+    }
+    echo"<div id ='hidden-object' style = 'display: none;'>";
+    
+    while ( $row = $res->fetch_assoc()){
+       
         echo"
             <div class='gallery' >
                 <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
@@ -79,7 +107,15 @@ if($res->num_rows == 0 ){
                 </a>
             </div>";
     }
+    echo"</div>";
 }
 ?>
     </div>
 </body>
+<script>
+    function showObject(id){
+    //Menampilkan obyek HTML
+    document.getElementById(id).style.display ='block';
+    }
+</script>
+</html>
