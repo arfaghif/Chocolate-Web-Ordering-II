@@ -1,5 +1,17 @@
 <?php
 include "logreg/config.php";
+$cookie_name = "user";
+if(!isset($_COOKIE[$cookie_name])){
+    header('location: logreg/login.php');
+}else{
+    $user = $_COOKIE[$cookie_name];
+    $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+    if ($res->num_rows==0){
+        setcookie("user", "", time() - 3600,'/');
+        header('location: logreg/login.php');
+    }
+}
+
 if(isset($_GET['search'])){
     $search = $_GET['search'];
     $res =  $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE nama LIKE '%".$search."%' ORDER BY amount_sold DESC, idchocolate LIMIT 3");
@@ -22,7 +34,17 @@ else{
 <body>
     <div class = "topnav">
         <a href = "dashboard.php">Home</a>
-        <a href="transaksi.php">History</a>
+<?php
+    if($user_type == 1){
+        echo 
+    
+        '<a href="transaksi.php">History</a>';
+    }else {
+        echo 
+    
+        '<a href="add_new_choco.php">Add New Chocolate</a>';
+    }
+?>
         <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">

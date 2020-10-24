@@ -2,7 +2,8 @@
 include "logreg/config.php";
 if (isset($_REQUEST['idchoco'])) {
 
-	$idchoco = $_REQUEST['idchoco'];
+    $idchoco = $_REQUEST['idchoco'];
+
 }else {
 	header('location: index.php');
 }

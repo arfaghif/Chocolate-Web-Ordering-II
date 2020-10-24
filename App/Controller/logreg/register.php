@@ -1,35 +1,41 @@
+<?php
+$cookie_name = "user";
+    if(isset($_COOKIE[$cookie_name])){
+        header('location: ../dashboard.php');
+    }
+?>
+
 <script type="text/javascript">
     function pass_matcher() {
         pass = document.getElementById("psw").value;
         cpass = document.getElementById("psw2").value;
         if (pass==cpass){
-            document.getElementById("message").innerHTML="match!";
-            document.getElementById("message").style.color="green";
+            document.getElementById("pass_message").innerHTML="match!";
+            document.getElementById("pass_message").style.color="green";
+            document.getElementById("psw2").style.border="4px solid green";
         }
         else {
-            document.getElementById("message").innerHTML="Password must match";
-            document.getElementById("message").style.color="red";
-            document.getElementById("message").style.border="2px solid red";
-            document.getElementById("username").style.border="4px solid green";
-
+            document.getElementById("pass_message").innerHTML="Password must match";
+            document.getElementById("pass_message").style.color="red";
+            document.getElementById("psw2").style.border="1px solid black";
 
         }   
     }
-    function showUser(str) {
+    function checkUser(str) {
         if (str == "") {
-            document.getElementById("message").innerHTML = "";
+            document.getElementById("pass_message").innerHTML = "";
             return;
         } else {
             var xmlhttp = new XMLHttpRequest();
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    //document.getElementById("message1").innerHTML = this.responseText;
+                    //document.getElementById("user_message").innerHTML = this.responseText;
                     
                     if (this.responseText=="green") {
                         if (str!="") {
                             document.getElementById("username").style.border="4px solid green";
-                            document.getElementById("message1").innerHTML = "";
+                            document.getElementById("user_message").innerHTML = "";
                         }
                         else {
                             document.getElementById("username").style.border="1px solid black";
@@ -37,23 +43,48 @@
                     }
                     else {
                         document.getElementById("username").style.border="1px solid black";
-                        document.getElementById("message1").innerHTML = this.responseText;   
+                        document.getElementById("user_message").innerHTML = this.responseText;   
                     }
                 }
             };
-            xmlhttp.open("GET","userCheck.php?q="+str,true); 
+            xmlhttp.open("GET","validate.php?q="+str,true); 
+            xmlhttp.send();
+
+        }
+    }
+    function checkEmail(str) {
+        if (str == "") {
+            document.getElementById("email_message").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //document.getElementById("user_message").innerHTML = this.responseText;
+                    
+                    if (this.responseText=="green") {
+                        if (str!="") {
+                            document.getElementById("email").style.border="4px solid green";
+                            document.getElementById("email_message").innerHTML = "";
+                        }
+                        else {
+                            document.getElementById("email").style.border="1px solid black";
+                        }
+                    }
+                    else {
+                        document.getElementById("email").style.border="1px solid black";
+                        document.getElementById("email_message").innerHTML = this.responseText;   
+                    }
+                }
+            };
+            xmlhttp.open("GET","validate.php?p="+str,true); 
             xmlhttp.send();
 
         }
     }
 </script>
-/*
-Pengecekan keunikan nilai field dilakukan menggunakan AJAX. Jika unik, border field akan berwarna hijau.
-Jika tidak unik, akan muncul pesan error pada form.
-Validasi lain yang dilakukan pada sisi klien pada halaman ini adalah:
 
-Email memiliki format email standar seperti “example@example.com”.
-Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
 
 <html>
     <head>
@@ -69,17 +100,16 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
             <div id="main-box">
                 <form method="post" action="" name="register-form">
                     <label for="username">Username</label><br>
-                    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" onkeyup="showUser(this.value)" placeholder="Type your username here" required>
-                    <div id="message1">
-
-                    </div><br>
+                    <input type="text" id="username" name="username" pattern="^[a-zA-Z0-9_?]+$" onkeyup="checkUser(this.value)" placeholder="Type your username here" required>
+                    <div id="user_message"></div><br>
                     <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" placeholder="Type your email here" required><br><br>
+                    <input type="email" id="email" name="email" onkeyup="checkEmail(this.value)" placeholder="Type your email here" required><br>
+                    <div id="email_message"></div><br>
                     <label for="psw">Password</label><br>
-                    <input type="password" id="psw" name="psw" placeholder="Type your password here" required><br><br>
+                    <input type="password" id="psw" name="psw" placeholder="Type your password here" onkeyup="pass_matcher()" required><br><br>
                     <label for="psw2">Confirm Password</label><br>
                     <input type="password"  id="psw2" name="psw2" placeholder="Retype your password here" onkeyup="pass_matcher()" required><br>
-                    <div id="message">
+                    <div id="pass_message">
                         <?php
                             include('config.php');
 
@@ -111,6 +141,11 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
 
                                         if ($result->num_rows==1) {
                                             echo '<p class="success">Your registration was successful!</p>';
+                                            $cookie_name = "user";
+                                            $cookie_value = $username;
+                                            
+                                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
+                                            header('location: ../dashboard.php');
                                         } else {
                                             echo '<p class="error">Something went wrong!</p>';
                                         }
@@ -124,6 +159,7 @@ Username hanya menerima kombinasi alphabet, angka, dan underscore.*/
                     </div><br><br><br>
                     <input type="submit" value="Register">
                 </form>
+                <p>Already have an account? <a href="login.php"><u>Login</u></a></p>
             </div>
             
             
