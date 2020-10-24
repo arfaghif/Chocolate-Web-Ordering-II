@@ -54,7 +54,7 @@ $cookie_name = "user";
            
                                     if ($result->num_rows == 0) {
                                        
-                                        $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
+                                        $sql = ("INSERT INTO user(username,email,password,type) VALUES ('$username','$email','$password_hash',1)");
                                         $connection->query($sql);
 
                                         $result = $connection->query("SELECT * FROM user WHERE username='$username'");

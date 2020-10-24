@@ -135,3 +135,12 @@ input[type=submit]:active {
 #switch-page{
     text-align: center;
 }
+
+@media screen and (max-width: 800px) {
+    #title-box{
+        width: 90%;
+    }
+    #main-box{
+        width: 90%;
+    }
+}
