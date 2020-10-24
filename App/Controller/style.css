@@ -71,6 +71,27 @@ div.page{
     padding: 20px;
 } 
 
+.dash-table{
+    margin : 0px 30px;
+    width:  100%;
+    background: none;
+
+}
+#greet{
+    font-size:  20pt;
+    font-weight: bold;
+
+}
+
+#view-choco{
+    text-align: right;
+    padding-right:  10%;
+}
+#view-choco button{
+    height:  30px;
+    width: 20%px;
+}
+
 div.gallery {
     margin: 15px 30px;
     border: 1px solid #ccc;
