@@ -1,3 +1,12 @@
+<?php
+include "logreg/config.php";
+if (isset($_REQUEST['idchoco'])) {
+
+	$idchoco = $_REQUEST['idchoco'];
+}else {
+	header('location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +14,10 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
-
+<?php
+    $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
+    $row = $res->fetch_assoc();
+    echo '
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
@@ -29,13 +41,13 @@
                 <div class="list-image" id = "chocodetail">
                     <img src="phot/2.jpg" alt="choco 1" width="600" height="400">
                     <div class="details" id = "details-choco">
-                        <h3>Choco 1</h3>
+                        <h3>'.$row['nama'].'</h3>
                         <p>
-                            Amount sold : 1 </br>
-                            Price : 30000000 </br>
-                            Amount REMAINING : 15</br>
+                            Amount sold : '.$row['amount_sold'].' </br>
+                            Price : '.$row['price'].' </br>
+                            Amount Remaiing : '.$row['amount_remaining'].'</br>
                             Description :</br>
-                            Coklat manisnya kaka</br>
+                            '.$row['description'].'</br>
 
                         </p>
                     </div>
@@ -46,4 +58,5 @@
         </div>
     </div>
 
-</body>
+</body>';
+?>

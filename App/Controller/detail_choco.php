@@ -35,6 +35,7 @@ if (isset($_REQUEST['idchoco'])) {
 <?php
     $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
     $row = $res->fetch_assoc();
+    setcookie("harga", $row['price'], time()+3600, "/","", 0);
     echo
         '<div class = "container-chocodetail">
             <div class = "choco-name">
@@ -55,7 +56,9 @@ if (isset($_REQUEST['idchoco'])) {
                         </p>
                     </div>
                 </div>
-                <button type = "button" class = "btn-buy">Buy Now</button>
+                <a href = "buy_choco.php?idchoco='.$idchoco.'">
+                    <button type = "submit" name = "btn-buy" class = "btn-buy";">Buy</button>
+                </a>
             </div>
 
         </div>';

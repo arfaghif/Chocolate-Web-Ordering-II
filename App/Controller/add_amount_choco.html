@@ -5,7 +5,23 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
-
+<script>
+    let count_amount = 0;
+    let tot_harga = 0;
+    addamount = ()=>{
+        count_amount +=1;
+        change_field();
+    }
+    minamount = ()=>{
+        if(count_amount>0){
+            count_amount -=1;
+        }
+        change_field();
+    }
+   change_field= ()=>{
+        document.getElementById("field-amount").innerHTML = count_amount;
+    }
+</script>
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
@@ -45,13 +61,13 @@
                                 <p>Amount to add: </p>
                                 <div class = "add-min-amount">
                                     <div class = "add-amount">
-                                        <button class = "add-amount"><img src = "icon/plus-icon.png" width = "100%" height = "100%"></button>
+                                        <button class = "add-amount" onclick = "addamount()"><img src = "icon/plus-icon.png" width = "100%" height = "100%"></button>
                                     </div>
                                     <div class = "field-amount">
-                                        <h1 id = "field-amount" font-size = "100%">8</h1>
+                                        <h1 id = "field-amount" font-size = "100%">0</h1>
                                     </div>
                                     <div class = "min-amount">
-                                        <button class = "min-amount"><img src = "icon/min-icon.png" width="100%" height = "100%"></button>
+                                        <button class = "min-amount" onclick = "minamount()"><img src = "icon/min-icon.png" width="100%" height = "100%"></button>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +81,7 @@
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">
-                            <button type = "button" class = "btn-buy">Add</button>
+                            <button type = "button" class = "btn-buy" onclick = "add_action()">Add</button>
                         </div>
                         <div class = "button-cancle">
                             <button type = "button" class = "btn-buy">Cancle</button>
