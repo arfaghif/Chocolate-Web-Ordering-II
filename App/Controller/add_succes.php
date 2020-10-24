@@ -33,7 +33,9 @@ echo'
             <p>Choclat Enak</p>
             </div>
     ';
-    $count_amount = $_REQUEST['totamount'];
+    $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
+    $row = $res->fetch_assoc();
+    $count_amount = $_COOKIE['add-amount'];
     $user = $_COOKIE['user'];
     if($count_amount > 0){
         echo'
@@ -43,8 +45,9 @@ echo'
             <button type = "button">Back to Dashboard</button>
         </a>
         </div>';
-        $sql = ("UPDATE chocolate SET amount_remaining='$count_amount' WHERE idchocolate='$idchoco'");
-        $connection->query($sql2);
+        $tot_amount = intval($row['amount_remaining']) + intval($count_amount);
+        $sql = ("UPDATE chocolate SET amount_remaining='$tot_amount' WHERE idchocolate='$idchoco'");
+        $connection->query($sql);
 
     }else{
         echo'

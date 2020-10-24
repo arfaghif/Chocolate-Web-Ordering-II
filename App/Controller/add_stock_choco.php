@@ -52,7 +52,9 @@ if (isset($_REQUEST['idchoco'])) {
                         </p>
                     </div>
                 </div>
-                <button type = "button" class = "btn-buy">Add Stock</button>
+                <a href = "add_amount_choco.php?idchoco='.$idchoco.'">
+                <button type = "button" class = "btn-buy">Add</button>
+                </a>
             </div>
 
         </div>

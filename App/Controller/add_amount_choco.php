@@ -1,3 +1,12 @@
+<?php
+include "logreg/config.php";
+if (isset($_REQUEST['idchoco'])) {
+
+	$idchoco = $_REQUEST['idchoco'];
+}else {
+	header('location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +30,50 @@
    change_field= ()=>{
         document.getElementById("field-amount").innerHTML = count_amount;
     }
+    add_action = ()=>{
+        if(getCookie("add-amount")){
+            eraseCookie("add-amount");
+        }
+        createCookie("add-amount",String(count_amount),"1");
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    function createCookie(name, value, days) {
+        var expires; 
+        
+        if (days) { 
+            var date = new Date(); 
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); 
+            expires = "; expires=" + date.toGMTString(); 
+        } 
+        else { 
+            expires = ""; 
+        } 
+        
+        document.cookie = escape(name) + "=" +  
+            escape(value) + expires + "; path=/"; 
+    }
+    function eraseCookie(name) {
+        createCookie(name,"",-1);
+    } 
 </script>
+<?php
+$res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
+$row = $res->fetch_assoc();
+echo'
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
@@ -47,13 +99,13 @@
                         <img src="phot/2.jpg" alt="choco 1" width="100%" height="100%">
                     </div>
                     <div class="details-buy" id = "details-choco">
-                        <h3>Choco 1</h3>
+                        <h3>'.$row['nama'].'</h3>
                         <p>
-                            Amount sold : 1 </br>
-                            Price : 30000000 </br>
-                            Amount REMAINING : 15</br>
+                            Amount sold : '.$row['amount_sold'].' </br>
+                            Price : '.$row['price'].' </br>
+                            Amount Remaiing : '.$row['amount_remaining'].'</br>
                             Description :</br>
-                            Coklat manisnya kaka</br>
+                            '.$row['description'].'</br>
 
                         </p>
                         <div class = "pembelian">
@@ -81,10 +133,14 @@
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">
+                            <a href = "add_succes.php?idchoco='.$idchoco.'">
                             <button type = "button" class = "btn-buy" onclick = "add_action()">Add</button>
+                            </a>
                         </div>
                         <div class = "button-cancle">
+                            <a href = "add_stock_choco.php?idchoco='.$idchoco.'">
                             <button type = "button" class = "btn-buy">Cancle</button>
+                            </a>
                         </div>
                     </div>
                 </form>
@@ -93,4 +149,4 @@
         </div>
     </div>
 
-</body>
+</body>';
