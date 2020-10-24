@@ -55,7 +55,7 @@ $res = $connection->query("SELECT  nama,idchocolate, amount, total_price,time,ad
                     <th>Amount</th>
                     <th>Total Price</th>
                     <th>Date</th>
-                    <th>TIme</th>
+                    <th>Time</th>
                     <th>Address</th>
                 </tr>
 <?php

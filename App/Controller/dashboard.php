@@ -57,7 +57,7 @@
     <table class= "dash-table">
     <tr>
         <td id = "greet"> Hello, '.$user.'</td>
-        <td id= "view-choco"> <button type ="button" onclick="showObject(\'hidden-object\')">View all chocolate</td>
+        <td id= "view-choco"> <button type ="button" onclick="showObject(\'hidden-object\'),hideObject(\'view-choco\')">View all chocolate</td>
     </tr>
     </table>'
 ?>
@@ -116,6 +116,10 @@ if($res->num_rows == 0 ){
     function showObject(id){
     //Menampilkan obyek HTML
     document.getElementById(id).style.display ='block';
+    }
+    function hideObject(id){
+    //Menampilkan obyek HTML
+    document.getElementById(id).style.display ='none';
     }
 </script>
 </html>

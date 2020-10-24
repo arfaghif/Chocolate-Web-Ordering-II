@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `transaksi`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaksi` (
   `idtransaksi` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
+  `username` varchar(45) BINARY NOT NULL,
   `idchocolate` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `time` datetime NOT NULL,
@@ -84,7 +84,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `username` varchar(45) NOT NULL,
+  `username` varchar(45) BINARY NOT NULL,
   `nama` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(1024) NOT NULL,
