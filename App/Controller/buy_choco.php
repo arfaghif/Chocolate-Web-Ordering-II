@@ -126,13 +126,13 @@ echo '
                                 <p>Amount to buy: </p>
                                 <div class = "add-min-amount">
                                     <div class = "add-amount">
-                                        <button class = "add-amount" onclick = "addamount()"><img src = "icon/plus-icon.png" width = "100%" height = "100%"></button>
+                                        <button class = "add-amount" onclick = "minamount()"><img src = "icon/min-icon.png" width = "100%" height = "100%"></button>
                                     </div>
                                     <div class = "field-amount">
                                         <h1 id = "field-amount">0</h1>
                                     </div>
                                     <div class = "min-amount">
-                                        <button class = "min-amount" onclick = "minamount()"><img src = "icon/min-icon.png" width="100%" height = "100%"></button>
+                                        <button class = "min-amount" onclick = "addamount()"><img src = "icon/plus-icon.png" width="100%" height = "100%"></button>
                                     </div>
                                 </div>
                             </div>
@@ -154,13 +154,13 @@ echo '
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">
-                        <a href = "buy_sucess.php?idchoco='.$idchoco.'">
-                            <button type = "button" class = "btn-buy" onclick = "buy_action()">Buy</button>
+                        <a href = "detail_choco.php?idchoco='.$idchoco.'">
+                            <button type = "button" class = "btn-buy">Cancel</button>
                         </a>
                         </div>
                         <div class = "button-cancle">
-                        <a href = "detail_choco.php?idchoco='.$idchoco.'">
-                            <button type = "button" class = "btn-buy">Cancle</button>
+                        <a href = "buy_sucess.php?idchoco='.$idchoco.'">
+                            <button type = "button" class = "btn-buy" onclick = "buy_action()">Buy</button>
                         </a>
                         </div>
                     </div>

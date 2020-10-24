@@ -17,7 +17,7 @@ if (isset($_REQUEST['idchoco'])) {
 <body>
     <div class = "topnav" >
         <a  href = "dashboard.php">Home</a>
-        <a href="transaksi.php">History</a>
+        <a href="add_new_choco.php">Add New Chocolate</a>
         <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">

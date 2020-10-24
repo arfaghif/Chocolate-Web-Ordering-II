@@ -77,7 +77,7 @@ echo'
 <body>
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
-        <a href="#history">History</a>
+        <a href="add_new_choco.php">Add New Chocolate</a>
         <a href="logout" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
@@ -113,13 +113,13 @@ echo'
                                 <p>Amount to add: </p>
                                 <div class = "add-min-amount">
                                     <div class = "add-amount">
-                                        <button class = "add-amount" onclick = "addamount()"><img src = "icon/plus-icon.png" width = "100%" height = "100%"></button>
+                                        <button class = "add-amount" onclick = "minamount()"><img src = "icon/min-icon.png" width = "100%" height = "100%"></button>
                                     </div>
                                     <div class = "field-amount">
                                         <h1 id = "field-amount" font-size = "100%">0</h1>
                                     </div>
                                     <div class = "min-amount">
-                                        <button class = "min-amount" onclick = "minamount()"><img src = "icon/min-icon.png" width="100%" height = "100%"></button>
+                                        <button class = "min-amount" onclick = "addamount()"><img src = "icon/plus-icon.png" width="100%" height = "100%"></button>
                                     </div>
                                 </div>
                             </div>
