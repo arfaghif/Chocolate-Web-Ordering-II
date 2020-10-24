@@ -6,8 +6,6 @@ $cookie_name = "user";
 ?>
 
 
-
-
 <html>
     <head>
         <title>Willy Wangky Register Page</title>
@@ -55,7 +53,7 @@ $cookie_name = "user";
                                     }
                                 
                                     if ($result->num_rows == 0) {
-                                       
+                                       echo 'masuk ke tidak eror';
                                         $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
                                         $connection->query($sql);
 
@@ -66,13 +64,15 @@ $cookie_name = "user";
                                             $cookie_name = "user";
                                             $cookie_value = $username;
                                             $encode = base64_encode($cookie_value);
-                                        setcookie($cookie_name, $encode, time() + (86400 * 30), "/"); 
-                                        header('location: ../dashboard.php');
+                                            setcookie($cookie_name, $encode, time() + (86400 * 30), "/"); 
+                                            header('location: ../dashboard.php');
+    
                                         } else {
                                             echo '<p class="error">Something went wrong!</p>';
                                         }
                                     }
                                 }
+                                        
 
                                 
                             }
@@ -168,5 +168,6 @@ $cookie_name = "user";
         }
     }
 </script>
+
 </html>
 
