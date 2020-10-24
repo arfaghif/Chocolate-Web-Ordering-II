@@ -35,7 +35,7 @@ echo'
     ';
     $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
     $row = $res->fetch_assoc();
-    $count_amount = $_COOKIE['add-amount'];
+    $count_amount = base64_decode($_COOKIE['add-amount']);
     $user = $_COOKIE['user'];
     if($count_amount > 0){
         echo'

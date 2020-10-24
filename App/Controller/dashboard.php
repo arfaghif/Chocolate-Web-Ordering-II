@@ -57,7 +57,6 @@
     <p style="text-align: right;">View all chocolates</p>
 <?php
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
-$row = $res->fetch_assoc();
 
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
