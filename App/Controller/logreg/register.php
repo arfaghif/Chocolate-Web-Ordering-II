@@ -6,91 +6,6 @@ $cookie_name = "user";
 
 ?>
 
-<script type="text/javascript">
-        function pass_matcher() {
-            pass = document.getElementById("psw").value;
-            cpass = document.getElementById("psw2").value;
-                if (pass==cpass){
-                    
-                    document.getElementById("pass_message").innerHTML="match!";
-                    document.getElementById("pass_message").style.color="green";
-                    document.getElementById("psw2").style.border="4px solid green";
-                }
-                else {
-                    document.getElementById("pass_message").innerHTML="Password must match";
-                    document.getElementById("pass_message").style.color="red";
-                    document.getElementById("psw2").style.border="1px solid black";
-
-                }  
-            } 
-        }
-        function checkUser(str) {
-            if (str == "") {
-                document.getElementById("pass_message").innerHTML = "";
-                return;
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        //document.getElementById("user_message").innerHTML = this.responseText;
-                        
-                        if (this.responseText=="green") {
-                            if (str!="") {
-                                document.getElementById("username").style.border="4px solid green";
-                                document.getElementById("user_message").innerHTML = "username is unique!";
-                                document.getElementById("user_message").style.color="green";
-                            }
-                            else {
-                                document.getElementById("username").style.border="1px solid black";
-                            }
-                        }
-                        else {
-                            document.getElementById("username").style.border="1px solid black";
-                            document.getElementById("user_message").innerHTML = this.responseText;   
-                        }
-                    }
-                };
-                xmlhttp.open("GET","validate.php?q="+str,true); 
-                xmlhttp.send();
-
-            }
-        }
-        function checkEmail(str) {
-            if (str == "") {
-                document.getElementById("email_message").innerHTML = "";
-                return;
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        //document.getElementById("user_message").innerHTML = this.responseText;
-                        
-                        if (this.responseText=="green") {
-                            if (str!="") {
-                                document.getElementById("email").style.border="4px solid green";
-                                document.getElementById("email_message").innerHTML = "email is unique!";
-                                document.getElementById("email_message").style.color="green";
-
-                            }
-                            else {
-                                document.getElementById("email").style.border="1px solid black";
-                            }
-                        }
-                        else {
-                            document.getElementById("email").style.border="1px solid black";
-                            document.getElementById("email_message").innerHTML = this.responseText;   
-                        }
-                    }
-                };
-                xmlhttp.open("GET","validate.php?p="+str,true); 
-                xmlhttp.send();
-
-            }
-        }
-    </script>
-
 <html>
     <head>
         <title>Willy Wangky Register Page</title>
@@ -170,6 +85,89 @@ $cookie_name = "user";
         
 
     </body>
-    
+    <script type="text/javascript">
+        function pass_matcher() {
+            pass = document.getElementById("psw").value;
+            cpass = document.getElementById("psw2").value;
+                if (pass==cpass){
+                    
+                    document.getElementById("pass_message").innerHTML="match!";
+                    document.getElementById("pass_message").style.color="green";
+                    document.getElementById("psw2").style.border="4px solid green";
+                }
+                else {
+                    document.getElementById("pass_message").innerHTML="Password must match";
+                    document.getElementById("pass_message").style.color="red";
+                    document.getElementById("psw2").style.border="1px solid black";
+
+                }  
+             
+        }
+        function checkUser(str) {
+            if (str == "") {
+                document.getElementById("pass_message").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("user_message").innerHTML = this.responseText;
+                        
+                        if (this.responseText=="green") {
+                            if (str!="") {
+                                document.getElementById("username").style.border="4px solid green";
+                                document.getElementById("user_message").innerHTML = "username is unique!";
+                                document.getElementById("user_message").style.color="green";
+                            }
+                            else {
+                                document.getElementById("username").style.border="1px solid black";
+                            }
+                        }
+                        else {
+                            document.getElementById("username").style.border="1px solid black";
+                            document.getElementById("user_message").innerHTML = this.responseText;   
+                        }
+                    }
+                };
+                xmlhttp.open("GET","validate.php?q="+str,true); 
+                xmlhttp.send();
+
+            }
+        }
+        function checkEmail(str) {
+            if (str == "") {
+                document.getElementById("email_message").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("user_message").innerHTML = this.responseText;
+                        
+                        if (this.responseText=="green") {
+                            if (str!="") {
+                                document.getElementById("email").style.border="4px solid green";
+                                document.getElementById("email_message").innerHTML = "email is unique!";
+                                document.getElementById("email_message").style.color="green";
+
+                            }
+                            else {
+                                document.getElementById("email").style.border="1px solid black";
+                            }
+                        }
+                        else {
+                            document.getElementById("email").style.border="1px solid black";
+                            document.getElementById("email_message").innerHTML = this.responseText;   
+                        }
+                    }
+                };
+                xmlhttp.open("GET","validate.php?p="+str,true); 
+                xmlhttp.send();
+
+            }
+        }
+    </script>
 </html>
 
