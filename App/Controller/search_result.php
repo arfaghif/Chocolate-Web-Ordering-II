@@ -4,7 +4,8 @@ $cookie_name = "user";
 if(!isset($_COOKIE[$cookie_name])){
     header('location: logreg/login.php');
 }else{
-    $user = $_COOKIE[$cookie_name];
+    $user_no_decode = $_COOKIE[$cookie_name];
+    $user = base64_decode($user_no_decode);
     $res = $connection->query("SELECT type FROM user WHERE username='$user'");
     if ($res->num_rows==0){
         setcookie("user", "", time() - 3600,'/');

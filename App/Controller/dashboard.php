@@ -4,7 +4,8 @@
     if(!isset($_COOKIE[$cookie_name])){
         header('location: logreg/login.php');
     }else{
-        $user = $_COOKIE[$cookie_name];
+        $user_no_decode = $_COOKIE[$cookie_name];
+        $user = base64_decode($user_no_decode);
         $res = $connection->query("SELECT type FROM user WHERE username='$user'");
         if ($res->num_rows==0){
             setcookie("user", "", time() - 3600,'/');
@@ -52,12 +53,12 @@
     </div>
     <div class="page">
 <?php
-    echo "<h2>Hello ".$_COOKIE[$cookie_name]."</h2>";
+    echo "<h2>Hello ".$user."</h2>";
 ?>
     <p style="text-align: right;">View all chocolates</p>
 <?php
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
-$row = $res->fetch_assoc();
+
 
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';

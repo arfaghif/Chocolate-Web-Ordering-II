@@ -41,8 +41,8 @@ $cookie_name = "user";
                                     echo '<p class="success">Login was successful!</p>';
                                     $cookie_name = "user";
                                     $cookie_value = $username;
-                                    
-                                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
+                                    $encode = base64_encode($cookie_value);
+                                    setcookie($cookie_name, $encode, time() + (86400 * 30), "/"); 
                                     header('location: ../dashboard.php');
                                     
                                 }
