@@ -85,7 +85,6 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `username` varchar(45) BINARY NOT NULL,
-  `nama` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(1024) NOT NULL,
   `type` int(11) NOT NULL,
@@ -100,7 +99,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('arf','arf','arf@gmail.com','$2y$10$Y0TiOOJwpcROY5dqpi26Tu2waaDWvzSA3guQ3q63wtZqerR0cAEXW',1),('arfa','arfa','arfa@gmail.com','$2y$10$vGz4khEFv2cB/07H20DH8uZ4WWp3Thifm0.QyHvIvcDtRDmJjYqx.',0),('asin','asin','asin@gmail.com','$2y$10$2u4icLHS7LRN1GUnoPZj5u7on9eAUhlraNBgCyYwaabGBAXXJtB.O',0),('fatkhan','fatkhan','fatkhan@gmail.com','$2y$10$hi8muz5dIy3hb53hsgoviuutA0IN7sQKanB2peRm1OWUEOhhUouzG',0),('masruri','masruri','masruri@gmail.com','$2y$10$W1ivWdB7HZZQkyPbobG2ReblGPVhmwsKBMGmZmt9cw94zj4TVmMZS',1),('nisa','nisa','nisa@gmail.com','$2y$10$YrQfQD9Vnx92b5LBkxU8he.fhdGof6VkrBkDwoQMP1/iebPO5grym',1);
+INSERT INTO `user` VALUES ('arf','arf@gmail.com','$2y$10$Y0TiOOJwpcROY5dqpi26Tu2waaDWvzSA3guQ3q63wtZqerR0cAEXW',1),('arfa','arfa@gmail.com','$2y$10$vGz4khEFv2cB/07H20DH8uZ4WWp3Thifm0.QyHvIvcDtRDmJjYqx.',0),('asin','asin@gmail.com','$2y$10$2u4icLHS7LRN1GUnoPZj5u7on9eAUhlraNBgCyYwaabGBAXXJtB.O',0),('fatkhan','fatkhan@gmail.com','$2y$10$hi8muz5dIy3hb53hsgoviuutA0IN7sQKanB2peRm1OWUEOhhUouzG',0),('masruri','masruri@gmail.com','$2y$10$W1ivWdB7HZZQkyPbobG2ReblGPVhmwsKBMGmZmt9cw94zj4TVmMZS',1),('nisa','nisa@gmail.com','$2y$10$YrQfQD9Vnx92b5LBkxU8he.fhdGof6VkrBkDwoQMP1/iebPO5grym',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
