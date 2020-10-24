@@ -159,7 +159,7 @@ $cookie_name = "user";
                     </div><br><br><br>
                     <input type="submit" value="Register">
                 </form>
-                <p>Already have an account? <a href="login.php"><u>Login</u></a></p>
+                <p id="switch-page">Already have an account? <a href="login.php"><u>Login</u></a></p>
             </div>
             
             
