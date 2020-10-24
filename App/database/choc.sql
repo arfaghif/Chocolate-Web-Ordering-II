@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MariaDB dump 10.17  Distrib 10.4.14-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: choc
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	10.4.14-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,16 +21,16 @@
 
 DROP TABLE IF EXISTS `chocolate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chocolate` (
-  `idchocolate` int NOT NULL AUTO_INCREMENT,
+  `idchocolate` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(45) NOT NULL,
-  `amount_sold` int NOT NULL DEFAULT '0',
-  `price` int NOT NULL,
-  `amount_remaining` int NOT NULL,
+  `amount_sold` int(11) NOT NULL DEFAULT 0,
+  `price` int(11) NOT NULL,
+  `amount_remaining` int(11) NOT NULL,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`idchocolate`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,21 +49,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `transaksi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaksi` (
-  `idtransaksi` int NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) BINARY NOT NULL,
-  `idchocolate` int NOT NULL,
-  `amount` int NOT NULL,
+  `idtransaksi` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `idchocolate` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
   `time` datetime NOT NULL,
   `address` varchar(45) NOT NULL,
-  `total_price` int NOT NULL,
+  `total_price` int(11) NOT NULL,
   PRIMARY KEY (`idtransaksi`),
   KEY `username` (`username`),
   KEY `idchocolate` (`idchocolate`),
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`idchocolate`) REFERENCES `chocolate` (`idchocolate`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,15 +82,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `username` VARCHAR(45) BINARY NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `nama` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(1024) NOT NULL,
-  `type` int NOT NULL,
+  `type` int(11) NOT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +100,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('arf','arf@gmail.com','$2y$10$Y0TiOOJwpcROY5dqpi26Tu2waaDWvzSA3guQ3q63wtZqerR0cAEXW',1),('arfa','arfa@gmail.com','$2y$10$vGz4khEFv2cB/07H20DH8uZ4WWp3Thifm0.QyHvIvcDtRDmJjYqx.',0),('asin','asin@gmail.com','$2y$10$2u4icLHS7LRN1GUnoPZj5u7on9eAUhlraNBgCyYwaabGBAXXJtB.O',0),('fatkhan','fatkhan@gmail.com','$2y$10$hi8muz5dIy3hb53hsgoviuutA0IN7sQKanB2peRm1OWUEOhhUouzG',0),('masruri','masruri@gmail.com','$2y$10$W1ivWdB7HZZQkyPbobG2ReblGPVhmwsKBMGmZmt9cw94zj4TVmMZS',1),('nisa','nisa@gmail.com','$2y$10$YrQfQD9Vnx92b5LBkxU8he.fhdGof6VkrBkDwoQMP1/iebPO5grym',1);
+INSERT INTO `user` VALUES ('arf','arf','arf@gmail.com','$2y$10$Y0TiOOJwpcROY5dqpi26Tu2waaDWvzSA3guQ3q63wtZqerR0cAEXW',1),('arfa','arfa','arfa@gmail.com','$2y$10$vGz4khEFv2cB/07H20DH8uZ4WWp3Thifm0.QyHvIvcDtRDmJjYqx.',0),('asin','asin','asin@gmail.com','$2y$10$2u4icLHS7LRN1GUnoPZj5u7on9eAUhlraNBgCyYwaabGBAXXJtB.O',0),('fatkhan','fatkhan','fatkhan@gmail.com','$2y$10$hi8muz5dIy3hb53hsgoviuutA0IN7sQKanB2peRm1OWUEOhhUouzG',0),('masruri','masruri','masruri@gmail.com','$2y$10$W1ivWdB7HZZQkyPbobG2ReblGPVhmwsKBMGmZmt9cw94zj4TVmMZS',1),('nisa','nisa','nisa@gmail.com','$2y$10$YrQfQD9Vnx92b5LBkxU8he.fhdGof6VkrBkDwoQMP1/iebPO5grym',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-25  4:45:22
+-- Dump completed on 2020-10-24 23:06:31

@@ -45,7 +45,7 @@ $cookie_name = "user";
                                 }
                                 else {
                                     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-                                    $result = $connection->query("SELECT * FROM user WHERE (email LIKE '$email' or username LIKE BINARY '$username')");
+                                    $result = $connection->query("SELECT * FROM user WHERE (email='$email' or username='$username')");
 
 
                                     if ($result->num_rows > 0) {
@@ -54,10 +54,10 @@ $cookie_name = "user";
            
                                     if ($result->num_rows == 0) {
                                        
-                                        $sql = ("INSERT INTO user(username,email,password,type) VALUES ('$username','$email','$password_hash',1)");
+                                        $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
                                         $connection->query($sql);
 
-                                        $result = $connection->query("SELECT * FROM user WHERE username LIKE BINARY '$username'");
+                                        $result = $connection->query("SELECT * FROM user WHERE username='$username'");
 
                                         if ($result->num_rows==1) {
                                             echo '<p class="success">Your registration was successful!</p>';
