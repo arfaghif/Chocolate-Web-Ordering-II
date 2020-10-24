@@ -10,6 +10,10 @@ if(!isset($_COOKIE[$cookie_name])){
         setcookie("user", "", time() - 3600,'/');
         header('location: logreg/login.php');
     }
+    else{
+        $type = mysqli_fetch_array($res);
+        $user_type = $type['type'];
+    }
 }
 
 if(isset($_GET['search'])){
