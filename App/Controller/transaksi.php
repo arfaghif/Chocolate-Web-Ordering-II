@@ -1,3 +1,26 @@
+<?php
+
+include "logreg/config.php";
+$cookie_name = "user";
+if(!isset($_COOKIE[$cookie_name])){
+    header('location: Controller/logreg/login.php');
+}else{
+    $user = $_COOKIE[$cookie_name];
+    $res = $connection->query("SELECT type FROM user WHERE username='.$user.'");
+    if ($res->num_rows>0){
+        setcookie("user", "", time() - 3600,'/');
+        header('location: logreg/login.php');
+        
+    }
+    else{
+        $type = mysqli_fetch_array($res);
+        $user_type = $type['type'];
+    }
+}
+
+$res = $connection->query("SELECT  nama,idchocolate, amount, total_price,time,address FROM chocolate NATURAL JOIN transaksi WHERE username LIKE '".$user."' ORDER BY time DESC");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,41 +30,16 @@
 </html>
 
 <body>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "choc";
-// try {
-    // asumsi database test udah ada
-    $conn =  new mysqli($servername, $username, $password, $database);
-    
-    // misal database belum ada, jalanin query ini:
-    // $conn = new mysqli($servername, $username, $password);
-    // $isCreated = $conn->query("CREATE DATABASE $database");
-    // echo isCreated ? "db created successfully" : "db not created (already there or error occured)";
-     
-    // $sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
-    // $conn->query($sql);
-    $res = $conn->query("SELECT  nama, amount, total_price,time,address FROM chocolate NATURAL JOIN transaksi WHERE username LIKE 'matsu'");
-    
-    // echo $res->num_rows;
-    // while ($row = $res->fetch_assoc()) {
-    //   echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-    // }
-//   } catch (PDOException $e) {
-//     echo $e->getMessage();
-//   }
-?>
+
     <div class = "topnav">
         <a href = "dashboard.php">Home</a>
         <a class= "active" href="#history">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
-            <form action="/action_page.php">
+            <form action="search_result.php" method ="get">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><img src="icon/search.png" alt="submit"></i></button>
+                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
             </form>
         </div>
     </div>
@@ -60,6 +58,7 @@ $database = "choc";
                 </tr>
 <?php
 // echo $res->num_rows;
+    
     while ($row = $res->fetch_assoc()){
                 $datetime = new DateTime($row['time']);
 
@@ -68,7 +67,9 @@ $database = "choc";
                 
                echo 
                '<tr>
-                    <td>'.$row['nama'].'</td>
+                                      
+                    <td><a href="detail_choco.php?idchoco='.$row['idchocolate'].'">  '.$row['nama'].'</a></td>
+                    
                     <td>'.$row['amount'].'</td>
                     <td>'.$row['total_price'].'</td>
                     <td>'.$date.'</td>
@@ -77,105 +78,6 @@ $database = "choc";
                 </td>';
     }
 ?>
-<!-- 
-                <tr>
-                    <td>Choco 2</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 3</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 4</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 5</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 6</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 7</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 8</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 9</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 10</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 11</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td>
-
-                <tr>
-                    <td>Choco 12</td>
-                    <td>3</td>
-                    <td>3000000</td>
-                    <td>17 - 06 - 2020</td>
-                    <td>23.59</td>
-                    <td>Jalan tersesat</td>
-                </td> -->
             </table>
         </div>
 </body>

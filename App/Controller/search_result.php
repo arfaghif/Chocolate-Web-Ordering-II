@@ -2,8 +2,10 @@
 include "logreg/config.php";
 if(isset($_GET['search'])){
     $search = $_GET['search'];
-    $res =  $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE nama LIKE '%".$search."%'");
-    
+    $res =  $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE nama LIKE '%".$search."%' ORDER BY amount_sold DESC, idchocolate LIMIT 3");
+}
+else{
+    header("Location: localhost:8000/controller/dashboard.php");
 }
 
 ?>
@@ -19,9 +21,9 @@ if(isset($_GET['search'])){
 
 <body>
     <div class = "topnav">
-        <a href = "#home">Home</a>
-        <a href="#history">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
+        <a href = "dashboard.php">Home</a>
+        <a href="transaksi.php">History</a>
+        <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
             <form action="search_result.php" method ="get">
@@ -30,39 +32,75 @@ if(isset($_GET['search'])){
             </form>
         </div>
     </div>
-    <div class="page">
 
+    <div class="page">
+    <div id= "list-search-result">
  <?php 
-//  echo $res->num_rows;
+//  
  if($res->num_rows == 0 ){
      echo '<h2>No Result</h2>';
- } else{
-    while ($row = $res->fetch_assoc()){
+} else{
+    
+    while ($row = $res->fetch_assoc() ){
     echo'
-    <div class="list-image">
-     <a target="_blank" href="phot/'.$row["idchocolate"].'.jpg">
-       <img src="phot/'.$row["idchocolate"].'.jpg" alt="choco 1">
+        <div class="list-image">
+            <a  href="detail_choco.php?idchoco='.$row['idchocolate'].'">
+            <img src="phot/'.$row["idchocolate"].'.jpg" alt="choco 1">
      
-     <div class="details">
-         <h3>'.$row["nama"].'</h3>
-         <p>
-             Amount sold : '.$row['amount_sold'].' </br>
-             Price : '.$row["price"].' </br>
-             Amount REMAINING : '.$row["amount_remaining"].'</br>
-             Description :</br>
-             '.$row['description'].'</br>
+            <div class="details">
+            <h3>'.$row["nama"].'</h3>
+            <p>
+                Amount sold : '.$row['amount_sold'].' </br>
+                Price : '.$row["price"].' </br>
+                Amount REMAINING : '.$row["amount_remaining"].'</br>
+                Description :</br>
+                '.$row['description'].'</br>
 
-         </p>
-     </div>
-     </a>
-    </div>';
+            </p>
+            </div>
+            </a>
+        </div>';
     }
 
- }
- ?>
-    
+ 
+ 
+    echo "</div>";
+    $res =  $connection->query("SELECT idchocolate FROM chocolate WHERE nama LIKE '%".$search."%'");
+    $i = $res->num_rows;
+    if ($i > 3){
+        $page = 1;
+        $offset = ($page-1) *3;
+        echo
+        "<div class = 'pagination'>
+            <span> Page </span>";
+        while ($i>0){
+            echo"
+            <button type ='button' onclick = 'openPage(\"".$search."\",".$offset.")'>".$page."</button>";
+            $i = $i -3;
+            $page = $page +1;
+            $offset = ($page-1)*3;
+        }
+        echo
+        "</div>";
+        
+    }
+}   
+        
+?>
 
-</div>
+<script>
+function openPage(search,offset) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("list-search-result").innerHTML =this.responseText;
+    }
+  };
+  xhttp.open("GET", "getsearch.php?offset="+offset+"&search="+search, true);
+  xhttp.send();
+}
+</script>
 
 
+    </div>
 </body>
