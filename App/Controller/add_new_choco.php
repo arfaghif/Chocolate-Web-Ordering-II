@@ -51,7 +51,7 @@
                         
                         <tr>
                             <td><label for="price">Price</label></td>
-                            <td><input type="number" id="price" name="price" placeholder="Type chocolate price here" required></td>
+                            <td><input type="number" min="1" id="price" name="price" placeholder="Type chocolate price here" required></td>
                         </tr>
                         <tr>
                             <td><label for="desc">Description</label></td>
@@ -59,50 +59,72 @@
                         </tr>
                         <tr>
                             <td><label for="img">Image</label></td>
-                            <td><input type="file"  id="img" name="img" accept="image/*" required></td>
+                            <td><input type="file"  id="img" name="img" accept="image/jpg" required></td>
                         </tr>
                         <tr>
                             <td><label for="amount">Amount</label></td>
-                            <td><input type="number"  id="amount" name="amount" placeholder="Type chocolate amount here" required></td>
+                            <td><input type="number"  min="0" id="amount" name="amount" placeholder="Type chocolate amount here" required></td>
                         </tr>
                     </table>
                     <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        include('logreg/config.php');
-                        
-                        $name = $_POST['name']; //nama 
-                        $price = $_POST['price']; // price
-                        $desc = $_POST['desc']; //description
-                        $amount = $_POST['amount']; //amount_remaining
-                        $amount_sold = 0;
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            include('logreg/config.php');
+                            
+                            $name = $_POST['name']; //nama 
+                            $price = $_POST['price']; // price
+                            $desc = $_POST['desc']; //description
+                            $amount = $_POST['amount']; //amount_remaining
+                            $amount_sold = 0;
 
-                        $sql = ("INSERT INTO chocolate(nama,amount_sold,price,amount_remaining,description) VALUES ('$name','$amount_sold','$price','$amount','$desc')");
-                        $connection->query($sql);
-                        
-                        $result = $connection->query("SELECT idchocolate FROM chocolate WHERE idchocolate=(select max(idchocolate) from chocolate)");
-                        
-                        $arr = mysqli_fetch_array($result);
-
-                        $target_dir = "phot/";
-                        $target_file = $target_dir . basename($_FILES["img"]["name"]);
-                        
-                        $number =  $arr["idchocolate"];
-                        echo $number;
-                        $target_test = $target_dir . $number . ".jpg";
-
-                        /*
-                        $target_test = $target_dir . $number . ".jpg";
-                        $target_png = $target_dir . $number . ".png";
-                        while (file_exists($target_test) or ) {
-                            $number+=1;
+                            $target_dir = "phot/";
+                            /*
                             $target_test = $target_dir . $number . ".jpg";
-                        }*/
-                        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_test)) {
-                            echo "The file ". htmlspecialchars( $target_test). " has been uploaded.";
-                        } else {
-                            echo "Sorry, there was an error uploading your file.";
+                            $target_png = $target_dir . $number . ".png";
+                            while (file_exists($target_test) or ) {
+                                $number+=1;
+                                $target_test = $target_dir . $number . ".jpg";
+                            }*/
+                            $uploadOk = 1;
+                            $target_file = $target_dir . basename($_FILES["img"]["name"]);
+                            $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+                            if($FileType != "jpg") {
+                                echo "<p class='error'> Sorry, only JPG files are allowed.</p>";
+                                $uploadOk = 0;
+                            }
+
+
+                            if (($price<=0) || ($amount<0)) {
+                                echo "<p class='error'>Price or amount invalid</p>";
+                                $uploadOk = 0;
+                            }
+
+
+                            if ($uploadOk){
+                                $sql = ("INSERT INTO chocolate(nama,amount_sold,price,amount_remaining,description) VALUES ('$name','$amount_sold','$price','$amount','$desc')");
+                                $connection->query($sql);
+                                
+                                $result = $connection->query("SELECT idchocolate FROM chocolate WHERE idchocolate=(select max(idchocolate) from chocolate)");
+                                
+                                $arr = mysqli_fetch_array($result);
+
+                                $target_file = $target_dir . basename($_FILES["img"]["name"]);
+                                
+                                $number =  $arr["idchocolate"];
+                                $target_test = $target_dir . $number . ".jpg";
+                                if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_test)) {
+                                    echo "<p class='success'>The file ". htmlspecialchars($target_test). " has been uploaded.</p>";
+                                } 
+                                else {
+                                    echo "<p class='error'>There was an error uploading your file.</p>";
+                                }
+                            }
+                            else {
+                                echo "<p class='error'>There was an error uploading your file.</p>";
+                            }
                         }
-                    }
+                            
+                        
                         /*
                         // Check if image file is a actual image or fake image
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -129,8 +151,7 @@
                         }
 
                         // Allow certain file formats
-                        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                            && $imageFileType != "gif" ) {
+                        if($imageFileType != "jpg") {
                             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                             $uploadOk = 0;
                         }
