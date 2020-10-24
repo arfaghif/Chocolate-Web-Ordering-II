@@ -59,8 +59,6 @@
 $username = $_COOKIE['user'];
 $user = ($connection->query("SELECT password,type FROM user WHERE username='$username'"))->fetch_assoc();
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
-$row = $res->fetch_assoc();
-$response = "";
 
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
