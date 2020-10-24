@@ -177,7 +177,17 @@ tr:nth-child(even){
     div.page{
         margin-top: 245px;
     }
-  }
+
+    .form-addchoco input[type=submit] {
+        display: inline-block;
+        float:none;
+        margin-right:80px;
+
+    }
+
+
+
+}
 
 
 div.choco-name{
@@ -338,6 +348,7 @@ div.total-price{
     color:black;
     padding:5% ;
     padding-top: 20px;
+    padding-bottom: 80px;
     margin-left:3%;
     margin-right:3%;
 }
@@ -347,6 +358,12 @@ div.total-price{
     color:whitesmoke;
 
 }
+
+.form-addchoco {
+    margin-top:0;
+}
+
+
 
 .form-addchoco label {
     vertical-align:top;
@@ -361,7 +378,7 @@ div.total-price{
 
 .form-addchoco input {
 
-    width: 90%;
+    width: 95%;
 
 }
 
@@ -383,7 +400,12 @@ div.total-price{
     width: 50%;
 }
 
-td, th {
+.form-addchoco table {
+    margin-top:0;
+    
+}
+
+.form-addchoco td, th {
     /*border: 1px solid #dddddd;
     padding: 8px;*/
     text-align: left;
@@ -403,9 +425,8 @@ td, th {
     width: 200px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
     float: right;
+    font-size: 16px;
 }
 
 .form-addchoco input[type=submit]:hover {

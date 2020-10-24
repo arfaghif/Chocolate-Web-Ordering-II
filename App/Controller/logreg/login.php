@@ -56,6 +56,8 @@ $cookie_name = "user";
                     </div><br><br><br>
                     <input type="submit" value="Login">
                 </form>
+                <p>Create account? <a href="register.php"><u>Sign up</u></a></p>
+                
             </div>
             
             

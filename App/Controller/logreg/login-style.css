@@ -56,6 +56,10 @@ body {
     padding-right: 10%;
 }
 
+#main-box p{
+    text-align: center;
+}
+
 
 .li{
     list-style: none;
@@ -111,6 +115,18 @@ input[type=submit]:active {
     color: green;
 }
 
-#message{
+#pass_message{
     font-size: 16px;
+    text-align: right;
 }
+
+#email_message{
+    font-size: 16px;
+    text-align: right;
+}
+
+#user_message{
+    font-size: 16px;
+    text-align: right;
+}
+

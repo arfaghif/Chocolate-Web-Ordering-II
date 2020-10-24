@@ -13,5 +13,17 @@
             echo 'green';
         }
     }
+    if (isset($_GET['p'])) {
+        $email = $_GET['p'];
+
+        $result = $connection->query("SELECT * FROM user WHERE email LIKE BINARY '$email'");
+        
+        if ($result->num_rows > 0) {
+            echo '<p class="error">The email is already registered!</p>';
+        }
+        else {
+            echo 'green';
+        }
+    }
         
 ?>

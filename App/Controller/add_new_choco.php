@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <td><label for="amount">Amount</label></td>
-                            <td><input type="number"  id="amount" name="amount" required></td>
+                            <td><input type="number"  id="amount" name="amount" placeholder="Type chocolate amount here" required></td>
                         </tr>
                     </table>
                     <?php
