@@ -113,7 +113,7 @@
                                 $number =  $arr["idchocolate"];
                                 $target_test = $target_dir . $number . ".jpg";
                                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_test)) {
-                                    echo "<p class='success'>The file ". htmlspecialchars($target_test). " has been uploaded.</p>";
+                                    echo "<p class='success'>Chocolate ". $name. " has been added.</p>";
                                 } 
                                 else {
                                     echo "<p class='error'>There was an error uploading your file.</p>";
