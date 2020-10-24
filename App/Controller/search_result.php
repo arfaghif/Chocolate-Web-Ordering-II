@@ -34,7 +34,17 @@ else{
 <body>
     <div class = "topnav">
         <a href = "dashboard.php">Home</a>
-        <a href="transaksi.php">History</a>
+<?php
+    if($user_type == 1){
+        echo 
+    
+        '<a href="transaksi.php">History</a>';
+    }else {
+        echo 
+    
+        '<a href="add_new_choco.php">Add New Chocolate</a>';
+    }
+?>
         <a href="logout.php" class= "nav-bar-right">Logout</a>
         
         <div class="search-container">
