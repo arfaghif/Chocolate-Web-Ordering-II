@@ -5,11 +5,10 @@
         header('location: Controller/logreg/login.php');
     }else{
         $user = $_COOKIE[$cookie_name];
-        $res = $connection->query("SELECT type FROM user WHERE username='.$user.'");
-        if ($res->num_rows>0){
+        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+        if ($res->num_rows==0){
             setcookie("user", "", time() - 3600,'/');
             header('location: logreg/login.php');
-            
         }
         else{
             $type = mysqli_fetch_array($res);
@@ -31,6 +30,7 @@
     <div class = "topnav" >
         <a class="active" href = "#home">Home</a>
 <?php
+    // echo $user;
     if ($user_type == 1){
         echo 
     
@@ -69,6 +69,7 @@ if(intval($user['type']) == 0 ){
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
 } else{
+    // echo '<h2>'.$user_type.'</h2>';
     while ($row = $res->fetch_assoc()) {
         echo"
             <div class='gallery' >
