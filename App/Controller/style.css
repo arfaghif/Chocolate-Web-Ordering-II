@@ -347,6 +347,8 @@ div.total-price{
     border: 1px solid #eceff5;
 }
 
+
+/*ADD CHOCO*/
 .container-addchoco{
     background:#80471c;
     color:black;
@@ -445,4 +447,19 @@ div.total-price{
     background-color: white;
     border: 2px solid  #432616;
     color:  #432616;
+}
+
+.error{
+    font-size: 16px;
+    text-align: right;
+    color: red;
+
+}
+
+.success{
+    font-size: 16px;
+    text-align: right;
+    color: whitesmoke;
+
+
 }

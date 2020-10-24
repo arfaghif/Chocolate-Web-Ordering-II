@@ -3,8 +3,8 @@ $cookie_name = "user";
     if(isset($_COOKIE[$cookie_name])){
         header('location: ../dashboard.php');
     }
-?>
 
+?>
 
 <html>
     <head>
@@ -51,9 +51,9 @@ $cookie_name = "user";
                                     if ($result->num_rows > 0) {
                                         echo '<p class="error">The username or email address is already registered!</p>';
                                     }
-                                
+           
                                     if ($result->num_rows == 0) {
-                                       echo 'masuk ke tidak eror';
+                                       
                                         $sql = ("INSERT INTO user(username,nama,email,password,type) VALUES ('$username','$username','$email','$password_hash',1)");
                                         $connection->query($sql);
 
@@ -66,17 +66,13 @@ $cookie_name = "user";
                                             $encode = base64_encode($cookie_value);
                                             setcookie($cookie_name, $encode, time() + (86400 * 30), "/"); 
                                             header('location: ../dashboard.php');
-                                            echo "masuk kelogin";
+    
                                         } else {
                                             echo '<p class="error">Something went wrong!</p>';
                                         }
                                     }
-                                }
-                                        
-
-                                
+                                }   
                             }
-                                
                         ?>
                     </div><br><br><br>
                     <input type="submit" value="Register">
@@ -90,84 +86,88 @@ $cookie_name = "user";
 
     </body>
     <script type="text/javascript">
-    function pass_matcher() {
-        pass = document.getElementById("psw").value;
-        cpass = document.getElementById("psw2").value;
-        if (pass==cpass){
-            document.getElementById("pass_message").innerHTML="match!";
-            document.getElementById("pass_message").style.color="green";
-            document.getElementById("psw2").style.border="4px solid green";
-        }
-        else {
-            document.getElementById("pass_message").innerHTML="Password must match";
-            document.getElementById("pass_message").style.color="red";
-            document.getElementById("psw2").style.border="1px solid black";
-
-        }   
-    }
-    function checkUser(str) {
-        if (str == "") {
-            document.getElementById("pass_message").innerHTML = "";
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    //document.getElementById("user_message").innerHTML = this.responseText;
+        function pass_matcher() {
+            pass = document.getElementById("psw").value;
+            cpass = document.getElementById("psw2").value;
+                if (pass==cpass){
                     
-                    if (this.responseText=="green") {
-                        if (str!="") {
-                            document.getElementById("username").style.border="4px solid green";
-                            document.getElementById("user_message").innerHTML = "";
+                    document.getElementById("pass_message").innerHTML="match!";
+                    document.getElementById("pass_message").style.color="green";
+                    document.getElementById("psw2").style.border="4px solid green";
+                }
+                else {
+                    document.getElementById("pass_message").innerHTML="Password must match";
+                    document.getElementById("pass_message").style.color="red";
+                    document.getElementById("psw2").style.border="1px solid black";
+
+                }  
+             
+        }
+        function checkUser(str) {
+            if (str == "") {
+                document.getElementById("pass_message").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("user_message").innerHTML = this.responseText;
+                        
+                        if (this.responseText=="green") {
+                            if (str!="") {
+                                document.getElementById("username").style.border="4px solid green";
+                                document.getElementById("user_message").innerHTML = "username is unique!";
+                                document.getElementById("user_message").style.color="green";
+                            }
+                            else {
+                                document.getElementById("username").style.border="1px solid black";
+                            }
                         }
                         else {
                             document.getElementById("username").style.border="1px solid black";
+                            document.getElementById("user_message").innerHTML = this.responseText;   
                         }
                     }
-                    else {
-                        document.getElementById("username").style.border="1px solid black";
-                        document.getElementById("user_message").innerHTML = this.responseText;   
-                    }
-                }
-            };
-            xmlhttp.open("GET","validate.php?q="+str,true); 
-            xmlhttp.send();
+                };
+                xmlhttp.open("GET","validate.php?q="+str,true); 
+                xmlhttp.send();
 
+            }
         }
-    }
-    function checkEmail(str) {
-        if (str == "") {
-            document.getElementById("email_message").innerHTML = "";
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
+        function checkEmail(str) {
+            if (str == "") {
+                document.getElementById("email_message").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
 
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    //document.getElementById("user_message").innerHTML = this.responseText;
-                    
-                    if (this.responseText=="green") {
-                        if (str!="") {
-                            document.getElementById("email").style.border="4px solid green";
-                            document.getElementById("email_message").innerHTML = "";
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("user_message").innerHTML = this.responseText;
+                        
+                        if (this.responseText=="green") {
+                            if (str!="") {
+                                document.getElementById("email").style.border="4px solid green";
+                                document.getElementById("email_message").innerHTML = "email is unique!";
+                                document.getElementById("email_message").style.color="green";
+
+                            }
+                            else {
+                                document.getElementById("email").style.border="1px solid black";
+                            }
                         }
                         else {
                             document.getElementById("email").style.border="1px solid black";
+                            document.getElementById("email_message").innerHTML = this.responseText;   
                         }
                     }
-                    else {
-                        document.getElementById("email").style.border="1px solid black";
-                        document.getElementById("email_message").innerHTML = this.responseText;   
-                    }
-                }
-            };
-            xmlhttp.open("GET","validate.php?p="+str,true); 
-            xmlhttp.send();
+                };
+                xmlhttp.open("GET","validate.php?p="+str,true); 
+                xmlhttp.send();
 
+            }
         }
-    }
-</script>
-
+    </script>
 </html>
 

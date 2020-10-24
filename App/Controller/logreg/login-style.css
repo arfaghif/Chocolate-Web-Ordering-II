@@ -104,12 +104,14 @@ input[type=submit]:active {
 
 .error{
     font-size: 16px;
+    text-align: right;
     color: red;
 
 }
 
 .success{
     font-size: 16px;
+    text-align: right;
     color: green;
 
 
