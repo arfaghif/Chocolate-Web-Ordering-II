@@ -18,16 +18,16 @@ if (isset($_REQUEST['idchoco'])) {
 echo'
 <body>
     <div class = "topnav" >
-        <a class="active" href = "#home">Home</a>
-        <a href="transaksi.php">History</a>
-        <a href="logout" class= "nav-bar-right">Logout</a>
-        
-        <div class="search-container">
-            <form action="search_result.php" method ="get">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit" ><img src="icon/search.png" alt="submit"></button>
-            </form>
-        </div>
+    <a  href = "dashboard.php">Home</a>
+    <a href="add_new_choco.php">Add New Chocolate</a>
+    <a href="logout.php" class= "nav-bar-right">Logout</a>
+
+    <div class="search-container">
+        <form action="search_result.php" method ="get">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit" ><img src="icon/search.png" alt="submit"></button>
+        </form>
+    </div>
     </div>
     <div class = "choco-name">
             <p>Choclat Enak</p>
