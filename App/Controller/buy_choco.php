@@ -103,7 +103,7 @@ echo '
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Buy Choco</p>
+            <h2>Buy Choco</h2>
             </div>
             <div class = "chocodetail">
                 <div class="chocodetail-buy" id = "chocodetail">

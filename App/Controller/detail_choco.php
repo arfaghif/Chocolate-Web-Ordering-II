@@ -40,7 +40,7 @@ if (isset($_REQUEST['idchoco'])) {
     echo
         '<div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Choclat Enak</p>
+            <h2>Chocolate Detail</h2>
             </div>
             <div class = "chocodetail">
                 <div class="list-image" id = "chocodetail">
@@ -50,7 +50,7 @@ if (isset($_REQUEST['idchoco'])) {
                         <p>
                             Amount sold : '.$row['amount_sold'].' </br>
                             Price : '.$row['price'].' </br>
-                            Amount Remaiing : '.$row['amount_remaining'].'</br>
+                            Amount Remaining : '.$row['amount_remaining'].'</br>
                             Description :</br>
                             '.$row['description'].'</br>
 

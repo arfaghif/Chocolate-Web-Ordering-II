@@ -35,7 +35,7 @@ if (isset($_REQUEST['idchoco'])) {
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Choco Detail</p>
+            <h2>Choco Detail</h2>
             </div>
             <div class = "chocodetail">
                 <div class="list-image" id = "chocodetail">

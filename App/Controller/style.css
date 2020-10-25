@@ -228,6 +228,11 @@ div.chocodetail{
 div#chocodetail{
     border: 0px;
 }
+
+.container-chocodetail{
+    color:whitesmoke;
+}
+
 button.btn-buy{
     padding: 2%;
     font-size: 100%;
@@ -258,6 +263,7 @@ div.field-amount{
     width:19%;
     text-align: center;
     background-color:#EFEFEF;
+    color:black;
     font-size: 0.7vw;
 }
 div.min-amount{
@@ -496,3 +502,4 @@ div.total-price{
 div.buy-succes{
     text-align: center;
 }
+

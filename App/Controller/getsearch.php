@@ -21,7 +21,7 @@ if($res->num_rows == 0 ){
            <p>
                Amount sold : '.$row['amount_sold'].' </br>
                Price : '.$row["price"].' </br>
-               Amount REMAINING : '.$row["amount_remaining"].'</br>
+               Amount Remaining : '.$row["amount_remaining"].'</br>
                Description :</br>
                '.$row['description'].'</br>
 

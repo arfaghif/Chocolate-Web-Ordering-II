@@ -91,7 +91,7 @@ echo'
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Add Amount Choco</p>
+            <h2>Add Amount Choco</h2>
             </div>
             <div class = "chocodetail">
                 <div class="chocodetail-buy" id = "chocodetail">
