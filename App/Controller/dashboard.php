@@ -6,7 +6,7 @@
     }else{
         $user_no_decode = $_COOKIE[$cookie_name];
         $user = base64_decode($user_no_decode);
-        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
+        $res = $connection->query("SELECT type FROM user WHERE username='$user' LIMIT 10");
         if ($res->num_rows==0){
             setcookie("user", "", time() - 3600,'/');
             header('location: logreg/login.php');
@@ -67,11 +67,8 @@ $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM choc
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
 } else{
-    // echo '<h2>'.$user_type.'</h2>';
-    $i = 0;
 
-    while ($res->num_rows > 0 && $i <10) {
-        $row = $res->fetch_assoc();
+    while ($row = $res->fetch_assoc()) {
         echo"
             <div class='gallery' >
                 <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
@@ -86,26 +83,28 @@ if($res->num_rows == 0 ){
                 </div>
                 </a>
             </div>";
-        $i +=1;
     }
     echo"<div id ='hidden-object' style = 'display: none;'>";
-    
-    while ( $row = $res->fetch_assoc()){
-       
-        echo"
-            <div class='gallery' >
-                <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
-                <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
-            
-                <div class='desc'>
-                    <h3>".$row['nama']."</h3>
-                    <p>
-                        Amount sold : ".$row['amount_sold']."</br>
-                        Price : ".$row['price']."
-                    </p>
-                </div>
-                </a>
-            </div>";
+    if($res->num_rows > 0 ){
+        $res = $connection->query("SELECT type FROM user WHERE username='$user' LIMIT 10 OFFSET 10");
+
+        while ( $row = $res->fetch_assoc()){
+        
+            echo"
+                <div class='gallery' >
+                    <a href='checkuser.php?idchoco=".$row['idchocolate']."'>
+                    <img src='phot/".$row['idchocolate'].".jpg' alt='choco 1' width='600' height='400'>
+                
+                    <div class='desc'>
+                        <h3>".$row['nama']."</h3>
+                        <p>
+                            Amount sold : ".$row['amount_sold']."</br>
+                            Price : ".$row['price']."
+                        </p>
+                    </div>
+                    </a>
+                </div>";
+        }
     }
     echo"</div>";
 }
