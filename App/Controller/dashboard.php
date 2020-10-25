@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title>Willy Wangky Choco Factory</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 

@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Add New Chocolate </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
