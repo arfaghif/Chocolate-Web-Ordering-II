@@ -123,7 +123,7 @@ div.list-image {
     margin: 15px;
     border: 1px solid #ccc;
     width: 100%;
-    background:  #80471c;
+    background:  cornsilk;
     color: black;
 }
 div.list-image a{
@@ -132,7 +132,7 @@ div.list-image a{
 }
 div.list-image:hover {
     border: 2px solid #777;
-    background: rosybrown;
+    background: whitesmoke;
 }
 div.list-image img {
     float: left;
@@ -342,12 +342,10 @@ div.total-price{
     overflow: hidden;
     line-height: normal;
     text-align: center;
-    font-size: 12px;
     width: 100%;
     padding-top: 10px;
     border-top: 1px solid #eceff5;
     margin-top: 20px;
-    font-weight: 500;
     padding-bottom: 10px;
     
 }
@@ -359,7 +357,13 @@ div.total-price{
     color: #333;
     border-radius: 2px;
     border: 1px solid #eceff5;
+    cursor: pointer;
     
+}
+
+.page-number:hover{
+    border: 2px solid #777;
+    background: whitesmoke;
 }
 
 .pagination span{
