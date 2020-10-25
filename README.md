@@ -57,7 +57,7 @@ Masa berlaku akses akun maksimal adalah 24 jam. Setelah itu, pengguna harus mela
 ### User
 ![buy detail](layar/choco_detail_user.png)
 ### Superuser
-![add detail] (layar/choco_detail_admin.png)
+![add detail](layar/choco_detail_admin.png)
 
 ## Buy Chocolate 
 ![buy choco](layar/buy_choco.png)
