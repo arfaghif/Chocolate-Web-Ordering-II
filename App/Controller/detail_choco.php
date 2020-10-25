@@ -12,7 +12,7 @@ if (isset($_REQUEST['idchoco'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Choco Detail </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>

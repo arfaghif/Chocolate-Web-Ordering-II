@@ -10,7 +10,7 @@ if (isset($_REQUEST['idchoco'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Add Amount Choco </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
@@ -91,7 +91,7 @@ echo'
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Choclat Enak</p>
+            <p>Add Amount Choco</p>
             </div>
             <div class = "chocodetail">
                 <div class="chocodetail-buy" id = "chocodetail">

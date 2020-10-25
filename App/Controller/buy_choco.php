@@ -10,7 +10,7 @@ if (isset($_REQUEST['idchoco'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Buy Choco </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
@@ -98,13 +98,12 @@ if (isset($_REQUEST['idchoco'])) {
 <?php
 $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
 $row = $res->fetch_assoc();
-echo $coba;
 echo '
 
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Choclat Enak</p>
+            <p>Buy Choco</p>
             </div>
             <div class = "chocodetail">
                 <div class="chocodetail-buy" id = "chocodetail">
@@ -151,6 +150,7 @@ echo '
                     <div class = "input-address">
                     <p>Address: </p>
                     <textarea id="textareaaddress" rows = "5%" cols = "100%"></textarea>
+                    <p id="warn-address"></p>
                     </div>
                     <div class = "submit-address">
                         <div class = "button-ok">

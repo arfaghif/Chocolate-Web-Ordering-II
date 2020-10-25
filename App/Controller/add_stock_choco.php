@@ -10,7 +10,7 @@ if (isset($_REQUEST['idchoco'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Add Stock Choco </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
@@ -35,7 +35,7 @@ if (isset($_REQUEST['idchoco'])) {
     <div class="page">
         <div class = "container-chocodetail">
             <div class = "choco-name">
-            <p>Choclat Enak</p>
+            <p>Choco Detail</p>
             </div>
             <div class = "chocodetail">
                 <div class="list-image" id = "chocodetail">

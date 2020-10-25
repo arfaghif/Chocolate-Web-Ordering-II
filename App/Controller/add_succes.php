@@ -10,7 +10,7 @@ if (isset($_REQUEST['idchoco'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Dashboard </title>
+        <title> Add Succes </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
@@ -41,9 +41,6 @@ echo'
         echo'
         <div class = "buy-succes">
         <h1>Add Amount Produk Success</h1>
-        <a href = "dashboard.php">
-            <button type = "button">Back to Dashboard</button>
-        </a>
         </div>';
         $tot_amount = intval($row['amount_remaining']) + intval($count_amount);
         $sql = ("UPDATE chocolate SET amount_remaining='$tot_amount' WHERE idchocolate='$idchoco'");
@@ -51,11 +48,8 @@ echo'
 
     }else{
         echo'
-        <div class = "buy-succes">
+        <div class = "buy-succes" text-align = "center">
         <h1>Transaksi gagal, stok tidak mencukupi</h1>
-        <a href = "dashboard.php">
-            <button type = "button">Back to Dashboard</button>
-        </a>
         </div>';
     }
 ?>

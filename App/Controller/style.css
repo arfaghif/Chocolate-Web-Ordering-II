@@ -396,6 +396,7 @@ div.total-price{
 
 .form-addchoco {
     margin-top:0;
+
 }
 
 
@@ -491,4 +492,7 @@ div.total-price{
     color: whitesmoke;
 
 
+}
+div.buy-succes{
+    text-align: center;
 }
