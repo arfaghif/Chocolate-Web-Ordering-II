@@ -6,7 +6,7 @@
     }else{
         $user_no_decode = $_COOKIE[$cookie_name];
         $user = base64_decode($user_no_decode);
-        $res = $connection->query("SELECT type FROM user WHERE username='$user' LIMIT 10");
+        $res = $connection->query("SELECT type FROM user WHERE username='$user'");
         if ($res->num_rows==0){
             setcookie("user", "", time() - 3600,'/');
             header('location: logreg/login.php');
@@ -62,7 +62,7 @@
     </table>'
 ?>
 <?php
-$res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC ");
+$res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10");
 
 if($res->num_rows == 0 ){
     echo '<h2>No Chocolate</h2>';
@@ -85,9 +85,8 @@ if($res->num_rows == 0 ){
             </div>";
     }
     echo"<div id ='hidden-object' style = 'display: none;'>";
+    $res = $connection->query("SELECT idchocolate,nama, amount_sold, price FROM chocolate ORDER BY amount_sold DESC LIMIT 10 OFFSET 10");
     if($res->num_rows > 0 ){
-        $res = $connection->query("SELECT type FROM user WHERE username='$user' LIMIT 10 OFFSET 10");
-
         while ( $row = $res->fetch_assoc()){
         
             echo"
