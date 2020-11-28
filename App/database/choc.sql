@@ -85,11 +85,8 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `username` varchar(45) BINARY NOT NULL,
-  `email` varchar(45) NOT NULL,
   `password` varchar(1024) NOT NULL,
-  `type` int(11) NOT NULL,
-  PRIMARY KEY (`username`),
-  UNIQUE KEY `email` (`email`)
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

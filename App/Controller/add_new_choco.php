@@ -54,6 +54,33 @@
                             <td><input type="number" min="1" id="price" name="price" placeholder="Type chocolate price here" required></td>
                         </tr>
                         <tr>
+                            <td><label for="resep1">Resep 1</label></td>
+                            <td><input type="text" id="resep1" name="resep1" placeholder="Type first receipt here" required></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label for="amount1">Jumlah Resep 1</label></td>
+                            <td><input type="number" min="1" id="jumlah1" name="jumlah1" placeholder="Type amount first receipt here" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resep2">Resep 2</label></td>
+                            <td><input type="text" id="resep2" name="resep2" placeholder="Type second receipt here" required></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label for="amount2">Jumlah Resep 2</label></td>
+                            <td><input type="number" min="1" id="jumlah2" name="jumlah2" placeholder="Type amount second receipt here" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resep3">Resep 3</label></td>
+                            <td><input type="text" id="resep3" name="resep3" placeholder="Type third receipt here" required></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label for="amount3">Jumlah Resep 3</label></td>
+                            <td><input type="number" min="1" id="jumlah3" name="jumlah3" placeholder="Type amount third receipt here" required></td>
+                        </tr>
+                        <tr>
                             <td><label for="desc">Description</label></td>
                             <td><input type="text" id="desc" name="desc" placeholder="Chocolate description..." required></td>
                         </tr>
