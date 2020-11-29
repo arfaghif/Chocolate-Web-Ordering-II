@@ -41,10 +41,24 @@ echo'
         echo'
         <div class = "buy-succes">
         <h1>Add Amount Produk Success</h1>
+        <button>
         </div>';
         $tot_amount = intval($row['amount_remaining']) + intval($count_amount);
         $sql = ("UPDATE chocolate SET amount_remaining='$tot_amount' WHERE idchocolate='$idchoco'");
         $connection->query($sql);
+        
+        $datatf = array(
+            "nama" => $row["nama"],
+            "idchoco" => $idchoco,
+            "amount" => $count_amount
+        );
+        $ch = curl_init("http://localhost:3001/api/beli");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($datatf));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
 
     }else{
         echo'

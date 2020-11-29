@@ -23,7 +23,17 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
+<?php
+    $JSONdaftarBahan = file_get_contents('http://localhost:3001/api/ingrid');
+    $daftarBahan = json_decode($JSONdaftarBahan);
+    foreach($daftarBahan as $key =>$value){
+        echo'
+        <script>console.log("'.$value->nama.'")</script>
+        ';
 
+    }
+
+echo'
 <body>
     <div class = "topnav" >
         <a href = "dashboard.php" >Home</a>
@@ -37,7 +47,6 @@
             </form>
         </div>
     </div>
-
     <div class="page">
         <div class = "container-addchoco">
             <h2>Add New Chocolate</h2><br>
@@ -54,8 +63,22 @@
                             <td><input type="number" min="1" id="price" name="price" placeholder="Type chocolate price here" required></td>
                         </tr>
                         <tr>
-                            <td><label for="resep1">Resep 1</label></td>
-                            <td><input type="text" id="resep1" name="resep1" placeholder="Type first receipt here" required></td>
+                            <td><label for="resep1">Resep 1</label></td>';?>
+                                <?php 
+                                echo'
+                                <td>
+                                <select id = "resep1" name = "resep1">';
+                                foreach ($daftarBahan as $key => $value){
+                                    echo'
+                                        <option value="'.$value->nama.'">'.$value->nama.'</option>
+                                    ';
+                                }
+                                echo'
+                                    </select>
+                                    </td>
+                                    ';
+
+                                echo'
                         </tr>
                         
                         <tr>
@@ -63,8 +86,23 @@
                             <td><input type="number" min="1" id="jumlah1" name="jumlah1" placeholder="Type amount first receipt here" required></td>
                         </tr>
                         <tr>
-                            <td><label for="resep2">Resep 2</label></td>
-                            <td><input type="text" id="resep2" name="resep2" placeholder="Type second receipt here" required></td>
+                            <td><label for="resep2">Resep 2</label></td>'
+                            ;?>
+                                <?php 
+                                echo'
+                                <td>
+                                <select id = "resep2" name = "resep2">';
+                                foreach ($daftarBahan as $key => $value){
+                                    echo'
+                                        <option value="'.$value->nama.'">'.$value->nama.'</option>
+                                    ';
+                                }
+                                echo'
+                                    </select>
+                                    </td>
+                                    ';
+
+                                echo'
                         </tr>
                         
                         <tr>
@@ -73,11 +111,31 @@
                         </tr>
                         <tr>
                             <td><label for="resep3">Resep 3</label></td>
-                            <td><input type="text" id="resep3" name="resep3" placeholder="Type third receipt here" required></td>
+                            '
+                            ;?>
+                                <?php 
+                                echo'
+                                <td>
+                                <select id = "resep3" name = "resep3">';
+                                foreach ($daftarBahan as $key => $value){
+                                    echo'
+                                        <option value="'.$value->nama.'">'.$value->nama.'</option>
+                                    ';
+                                }
+                                echo'
+                                    </select>
+                                    </td>
+                                    ';
+
+                                echo'
                         </tr>
                         
                         <tr>
                             <td><label for="amount3">Jumlah Resep 3</label></td>
+                            <td><input type="number" min="1" id="jumlah3" name="jumlah3" placeholder="Type amount third receipt here" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="Total">Total Harga </label></td>
                             <td><input type="number" min="1" id="jumlah3" name="jumlah3" placeholder="Type amount third receipt here" required></td>
                         </tr>
                         <tr>
@@ -93,6 +151,7 @@
                             <td><input type="number"  min="0" id="amount" name="amount" placeholder="Type chocolate amount here" required></td>
                         </tr>
                     </table>
+                    ';?>
                     <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             include('logreg/config.php');
@@ -101,6 +160,12 @@
                             $price = $_POST['price']; // price
                             $desc = $_POST['desc']; //description
                             $amount = $_POST['amount']; //amount_remaining
+                            $resep1 = $_POST['resep1'];
+                            $amntresep1 = $_POST['jumlah1'];
+                            $resep1 = $_POST['resep2'];
+                            $amntresep1 = $_POST['jumlah2'];
+                            $resep1 = $_POST['resep3'];
+                            $amntresep1 = $_POST['jumlah3'];
                             $amount_sold = 0;
 
                             $target_dir = "phot/";
