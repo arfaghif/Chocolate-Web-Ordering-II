@@ -103,7 +103,7 @@ echo'
                         <p>
                             Amount sold : '.$row['amount_sold'].' </br>
                             Price : '.$row['price'].' </br>
-                            Amount Remaiing : '.$row['amount_remaining'].'</br>
+                            Amount Remaining : '.$row['amount_remaining'].'</br>
                             Description :</br>
                             '.$row['description'].'</br>
 
@@ -139,7 +139,7 @@ echo'
                         </div>
                         <div class = "button-cancle">
                             <a href = "add_succes.php?idchoco='.$idchoco.'" class = "a-btn">
-                            <button type = "button" class = "btn-buy" onclick = "add_action()">Add</button>
+                            <button type = "button" class = "btn-buy" onclick = "add_action()">Request</button>
                             </a>
                         </div>
                     </div>

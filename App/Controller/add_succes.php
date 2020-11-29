@@ -33,6 +33,7 @@ echo'
             <p>Choclat Enak</p>
             </div>
     ';
+    // INI DIGANTI KODE REQUEST: idchocolate, jumlah
     $res = $connection->query("SELECT idchocolate,nama, amount_sold, price,amount_remaining,description FROM chocolate WHERE idchocolate =".$idchoco);
     $row = $res->fetch_assoc();
     $count_amount = base64_decode($_COOKIE['add-amount']);
