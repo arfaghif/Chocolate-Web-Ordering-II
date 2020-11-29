@@ -45,7 +45,7 @@ if (isset($_REQUEST['idchoco'])) {
                         <p>
                             Amount sold : '.$row['amount_sold'].' </br>
                             Price : '.$row['price'].' </br>
-                            Amount Remaiing : '.$row['amount_remaining'].'</br>
+                            Amount Remaining : '.$row['amount_remaining'].'</br>
                             Description :</br>
                             '.$row['description'].'</br>
 

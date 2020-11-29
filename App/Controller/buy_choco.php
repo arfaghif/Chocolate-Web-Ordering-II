@@ -42,7 +42,7 @@ if (isset($_REQUEST['idchoco'])) {
         change_field();
         count_price();
     }
-   change_field= ()=>{
+    change_field= ()=>{
         document.getElementById("field-amount").innerHTML = count_amount;
     }
     count_price = ()=>{
